@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Roth vs. Pretax: The Decision That Shapes Your Retirement | Herbig Wealth Management</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root{--navy:#0d1f35;--navy-mid:#172d4a;--gold:#c9a84c;--gold-light:#e8c97a;--cream:#f5f0e8;--off-white:#faf8f4;--text-mid:#4a5568;}
+  *{margin:0;padding:0;box-sizing:border-box;}html{scroll-behavior:smooth;}
+  body{font-family:'DM Sans',sans-serif;background:var(--off-white);color:var(--navy);overflow-x:hidden;}
+  nav{position:fixed;top:0;width:100%;z-index:200;height:72px;padding:0 60px;display:flex;align-items:center;justify-content:space-between;background:rgba(13,31,53,0.97);backdrop-filter:blur(12px);border-bottom:1px solid rgba(201,168,76,0.12);}
+  .logo{font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:600;letter-spacing:0.08em;color:#fff;text-decoration:none;display:flex;align-items:center;gap:10px;}
+  
+  .nav-links{display:flex;gap:32px;list-style:none;}
+  .nav-links a{color:rgba(255,255,255,0.7);text-decoration:none;font-size:0.83rem;letter-spacing:0.05em;transition:color 0.2s;border-bottom:1px solid transparent;padding-bottom:2px;}
+  .nav-links a:hover{color:var(--gold-light);border-bottom-color:var(--gold);}
+  .nav-cta{background:transparent;border:1px solid var(--gold);color:var(--gold);padding:8px 20px;font-family:'DM Sans',sans-serif;font-size:0.8rem;letter-spacing:0.08em;text-decoration:none;transition:all 0.25s;}
+  .nav-cta:hover{background:var(--gold);color:var(--navy);}
+  .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:4px;}
+  .hamburger span{display:block;width:24px;height:1.5px;background:rgba(255,255,255,0.8);transition:all 0.3s;}
+  .hamburger.open span:nth-child(1){transform:translateY(6.5px) rotate(45deg);}
+  .hamburger.open span:nth-child(2){opacity:0;}
+  .hamburger.open span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg);}
+  .mobile-drawer{position:fixed;top:72px;left:0;right:0;bottom:0;background:var(--navy);z-index:190;padding:40px 32px;transform:translateX(100%);transition:transform 0.35s cubic-bezier(0.4,0,0.2,1);display:flex;flex-direction:column;gap:8px;overflow-y:auto;}
+  .mobile-drawer.open{transform:translateX(0);}
+  .mobile-drawer a{font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-weight:300;color:rgba(255,255,255,0.8);text-decoration:none;padding:12px 0;border-bottom:1px solid rgba(255,255,255,0.07);}
+  .mobile-drawer .drawer-cta{margin-top:32px;background:var(--gold);color:var(--navy);padding:16px 28px;font-family:'DM Sans',sans-serif;font-size:0.9rem;font-weight:500;letter-spacing:0.08em;text-align:center;}
+
+  /* NAVY HERO for this article */
+  .article-hero{background:var(--navy-mid);padding:130px 60px 80px;position:relative;overflow:hidden;}
+  .hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(201,168,76,0.035) 1px,transparent 1px),linear-gradient(90deg,rgba(201,168,76,0.035) 1px,transparent 1px);background-size:80px 80px;pointer-events:none;}
+  /* Gold accent bar */
+  .hero-grid::after{content:'';position:absolute;right:0;top:0;bottom:0;width:3px;background:linear-gradient(to bottom,var(--gold),transparent);}
+  .hero-inner{position:relative;z-index:2;max-width:760px;}
+  .breadcrumb{font-size:0.7rem;letter-spacing:0.15em;color:rgba(255,255,255,0.3);text-transform:uppercase;margin-bottom:20px;display:flex;align-items:center;gap:10px;}
+  .breadcrumb a{color:var(--gold);text-decoration:none;}
+  .article-tag{display:inline-block;font-size:0.68rem;letter-spacing:0.18em;color:var(--gold);text-transform:uppercase;border:1px solid rgba(201,168,76,0.35);padding:5px 12px;margin-bottom:20px;}
+  .article-hero h1{font-family:'Cormorant Garamond',serif;font-size:clamp(2.4rem,5vw,3.8rem);font-weight:300;color:#fff;line-height:1.1;margin-bottom:24px;animation:fadeUp 0.7s ease 0.1s both;}
+  .article-hero h1 em{font-style:italic;color:var(--gold-light);}
+  .article-meta{display:flex;align-items:center;gap:24px;font-size:0.78rem;color:rgba(255,255,255,0.4);letter-spacing:0.06em;animation:fadeUp 0.7s ease 0.25s both;}
+  .meta-divider{width:1px;height:12px;background:rgba(255,255,255,0.2);}
+  .author-mark{width:28px;height:28px;border:1px solid var(--gold);display:flex;align-items:center;justify-content:center;font-size:0.6rem;color:var(--gold);}
+  .article-author{display:flex;align-items:center;gap:10px;}
+
+  .article-layout{display:grid;grid-template-columns:1fr 300px;gap:60px;max-width:1100px;margin:0 auto;padding:72px 60px;}
+  .article-body h2{font-family:'Cormorant Garamond',serif;font-size:1.9rem;font-weight:300;color:var(--navy);margin:48px 0 16px;line-height:1.2;}
+  .article-body h2 em{font-style:italic;}
+  .article-body h3{font-size:1rem;font-weight:500;color:var(--navy);margin:32px 0 12px;}
+  .article-body p{font-size:0.97rem;line-height:1.85;color:var(--text-mid);margin-bottom:20px;font-weight:300;}
+  .article-body p:first-child{font-size:1.1rem;line-height:1.8;color:#2d3748;}
+  .pull-quote{border-left:3px solid var(--gold);padding:20px 28px;margin:36px 0;background:var(--cream);}
+  .pull-quote p{font-family:'Cormorant Garamond',serif;font-size:1.45rem;font-weight:300;color:var(--navy);line-height:1.45;font-style:italic;margin:0;}
+  .article-body ul{margin:16px 0 20px 20px;}
+  .article-body li{font-size:0.95rem;line-height:1.8;color:var(--text-mid);margin-bottom:8px;}
+  .key-box{background:var(--navy);padding:32px 36px;margin:36px 0;}
+  .key-box .key-label{font-size:0.68rem;letter-spacing:0.18em;color:var(--gold);text-transform:uppercase;margin-bottom:14px;}
+  .key-box p{color:rgba(255,255,255,0.7);font-size:0.88rem;line-height:1.75;margin-bottom:10px;}
+  .key-box p:last-child{margin-bottom:0;}
+  .article-divider{width:40px;height:1px;background:var(--gold);margin:40px 0;}
+
+  /* scenario cards */
+  .scenario-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:28px 0;}
+  .scenario-card{padding:24px;border:1px solid rgba(13,31,53,0.1);}
+  .scenario-card.roth{border-top:3px solid var(--gold);}
+  .scenario-card.pretax{border-top:3px solid var(--navy);}
+  .scenario-label{font-size:0.68rem;letter-spacing:0.14em;text-transform:uppercase;font-weight:500;margin-bottom:8px;}
+  .scenario-card.roth .scenario-label{color:var(--gold);}
+  .scenario-card.pretax .scenario-label{color:var(--navy);}
+  .scenario-card h4{font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-weight:400;color:var(--navy);margin-bottom:10px;}
+  .scenario-card p{font-size:0.82rem;line-height:1.65;color:var(--text-mid);}
+
+  .article-sidebar{padding-top:8px;}
+  .sidebar-card{background:#fff;padding:28px 24px;margin-bottom:20px;border-top:2px solid var(--gold);}
+  .sidebar-card h4{font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:400;color:var(--navy);margin-bottom:10px;}
+  .sidebar-card p{font-size:0.8rem;line-height:1.65;color:var(--text-mid);margin-bottom:14px;}
+  .sidebar-cta{display:block;background:var(--navy);color:#fff;padding:10px 18px;text-align:center;font-size:0.78rem;letter-spacing:0.08em;text-decoration:none;transition:background 0.2s;}
+  .sidebar-cta:hover{background:var(--navy-mid);}
+  .related-label{font-size:0.68rem;letter-spacing:0.16em;color:var(--gold);text-transform:uppercase;margin-bottom:16px;font-weight:500;}
+  .related-link{display:block;padding:14px 0;border-bottom:1px solid rgba(13,31,53,0.08);text-decoration:none;}
+  .related-link:last-child{border-bottom:none;}
+  .related-tag{font-size:0.65rem;letter-spacing:0.12em;color:var(--gold);text-transform:uppercase;margin-bottom:4px;}
+  .related-title{font-size:0.85rem;color:var(--navy);line-height:1.4;transition:color 0.2s;}
+  .related-link:hover .related-title{color:var(--gold);}
+
+  .article-cta{background:var(--navy);padding:70px 60px;display:flex;align-items:center;justify-content:space-between;gap:40px;}
+  .article-cta h3{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:300;color:#fff;margin-bottom:8px;}
+  .article-cta p{color:rgba(255,255,255,0.5);font-size:0.9rem;}
+  .btn-primary{background:var(--gold);color:var(--navy);padding:14px 32px;font-size:0.85rem;letter-spacing:0.08em;font-weight:500;text-decoration:none;white-space:nowrap;transition:background 0.2s;display:inline-block;}
+  .btn-primary:hover{background:var(--gold-light);}
+  footer{background:#07111f;padding:40px 60px;display:flex;align-items:center;justify-content:space-between;border-top:1px solid rgba(201,168,76,0.1);flex-wrap:wrap;gap:20px;}
+  .footer-logo{font-family:'Cormorant Garamond',serif;font-size:1.2rem;color:rgba(255,255,255,0.4);letter-spacing:0.08em;margin-bottom:8px;}
+  .footer-disc{font-size:0.67rem;color:rgba(255,255,255,0.2);max-width:580px;line-height:1.6;}
+  .footer-links{display:flex;gap:20px;}
+  .footer-links a{font-size:0.72rem;color:rgba(255,255,255,0.3);text-decoration:none;}
+  .footer-links a:hover{color:var(--gold);}
+
+  @keyframes fadeUp{from{opacity:0;transform:translateY(24px);}to{opacity:1;transform:translateY(0);}}
+  @media(max-width:900px){
+    nav{padding:0 24px;}.nav-links,.nav-cta{display:none;}.hamburger{display:flex;}
+    .article-hero{padding:110px 24px 60px;}
+    .article-layout{grid-template-columns:1fr;padding:48px 24px;gap:40px;}
+    .scenario-grid{grid-template-columns:1fr;}
+    .article-cta{flex-direction:column;align-items:flex-start;padding:50px 24px;}
+    footer{flex-direction:column;padding:32px 24px;}
+  }
+
+  /* ── LOGO — Tommy Hilfiger inspired ── */
+  .logo {
+    display: flex; align-items: center; gap: 10px;
+    text-decoration: none;
+  }
+  
+  .logo-wordmark {
+    display: flex; flex-direction: column; align-items: center; gap: 1px;
+  }
+  .logo-main {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1.15rem; font-weight: 500;
+    letter-spacing: 0.22em; color: #fff;
+    line-height: 1;
+  }
+  .logo-sub {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.48rem; font-weight: 400;
+    letter-spacing: 0.28em; color: rgba(255,255,255,0.7);
+    line-height: 1; text-transform: uppercase;
+  }
+
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="logo"><span class="logo-wordmark"><span class="logo-main">HERBIG</span><span class="logo-sub">WEALTH MANAGEMENT</span></span></a>
+  <ul class="nav-links">
+    <li><a href="services.html">Services</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="serve.html">Who We Serve</a></li>
+    <li><a href="index.html#process">Process</a></li>
+    <li><a href="index.html#insights">Insights</a></li>
+  </ul>
+  <a href="contact.html" class="nav-cta">Let's Connect</a>
+  <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+</nav>
+<div class="mobile-drawer" id="mobile-drawer">
+  <a href="index.html">Home</a><a href="services.html">Services</a><a href="about.html">About Tait</a><a href="serve.html">Who We Serve</a><a href="contact.html">Contact</a>
+  <a href="contact.html" class="drawer-cta">Let's Connect</a>
+</div>
+
+<div class="article-hero">
+  <div class="hero-grid"></div>
+  <div class="hero-inner">
+    <div class="breadcrumb"><a href="index.html">Home</a><span>/</span><a href="index.html#insights">Insights</a><span>/</span>Retirement</div>
+    <div class="article-tag">Retirement</div>
+    <h1><em>Roth vs. Pretax:</em><br>The Decision That Shapes<br>Your Retirement</h1>
+    <div class="article-meta">
+      <div class="article-author"><div class="author-mark">TH</div>Tait Herbig</div>
+      <div class="meta-divider"></div>
+      <span>February 2026</span>
+      <div class="meta-divider"></div>
+      <span>4 min read</span>
+    </div>
+  </div>
+</div>
+
+<div class="article-layout">
+  <article class="article-body">
+
+    <p>Most people default to pretax 401(k) contributions. It's the path of least resistance — the contribution reduces your taxable income today, feels like a win, and gets filed away until retirement. But for a significant number of people, this default is the wrong choice, and the cost of getting it wrong compounds for decades.</p>
+
+    <p>The Roth vs. pretax decision is fundamentally a bet on your future tax rate relative to your current one. If your tax rate in retirement will be lower than it is today, pretax wins. If it will be higher — or the same — Roth wins. The challenge is that most people underestimate how high their retirement tax rate will be.</p>
+
+    <div class="article-divider"></div>
+
+    <h2>The core <em>trade-off</em></h2>
+
+    <div class="scenario-grid">
+      <div class="scenario-card pretax">
+        <div class="scenario-label">Pretax / Traditional</div>
+        <h4>Tax break now, tax bill later</h4>
+        <p>Contributions reduce your taxable income today. Growth is tax-deferred. Every dollar you withdraw in retirement is taxed as ordinary income — including the growth.</p>
+      </div>
+      <div class="scenario-card roth">
+        <div class="scenario-label">Roth</div>
+        <h4>Tax now, tax-free forever</h4>
+        <p>Contributions are made with after-tax dollars — no upfront deduction. Growth is completely tax-free. Qualified withdrawals in retirement are tax-free, including decades of compounded growth.</p>
+      </div>
+    </div>
+
+    <p>In pure math terms, if your tax rate is identical today and in retirement, the two options produce exactly the same after-tax result. The difference only matters when the rates diverge — which they almost always do.</p>
+
+    <h2>Why pretax is <em>riskier</em> than it looks</h2>
+
+    <p>The conventional wisdom is that you'll be in a lower bracket in retirement because your income will be lower. For many people, this is not what actually happens. Here's why:</p>
+
+    <ul>
+      <li><strong>Required Minimum Distributions (RMDs)</strong> force withdrawals from pretax accounts starting at age 73, whether you need the money or not. A large pretax balance generates large RMDs — which get layered on top of Social Security, pension income, and any part-time work. The combined income often pushes retirees into unexpectedly high brackets.</li>
+      <li><strong>Social Security taxation</strong> is triggered by income levels that are lower than most people expect. Up to 85% of your Social Security benefit can become taxable, and RMDs are a major driver of crossing those thresholds.</li>
+      <li><strong>Medicare IRMAA surcharges</strong> add hundreds of dollars per month in Medicare premiums for higher-income retirees — an invisible tax that most people don't anticipate.</li>
+      <li><strong>Tax rates may rise.</strong> Current tax rates are historically low by post-WWII standards. Many tax professionals expect higher rates in the future as the federal debt continues to grow. A large pretax IRA is essentially a deferred tax liability whose exact cost is unknown.</li>
+    </ul>
+
+    <div class="pull-quote">
+      <p>"A large pretax IRA isn't just an asset — it's a deferred tax liability. The question is what rate you'll eventually pay."</p>
+    </div>
+
+    <h2>Who should lean toward <em>Roth</em></h2>
+
+    <p>Roth contributions tend to make more sense when:</p>
+    <ul>
+      <li>You're early in your career and currently in a low bracket</li>
+      <li>You expect your income to rise significantly over time</li>
+      <li>You have a long time horizon — the tax-free compounding benefit grows with time</li>
+      <li>You already have a large pretax balance and want to diversify your tax exposure</li>
+      <li>You're in the 22% or 24% bracket today and anticipate being there or higher in retirement</li>
+      <li>You want to leave tax-free assets to heirs</li>
+    </ul>
+
+    <h2>Who should lean toward <em>pretax</em></h2>
+    <ul>
+      <li>You're currently in the 32% bracket or above and expect a meaningfully lower rate in retirement</li>
+      <li>You have a short time horizon before retirement and limited years of tax-free compounding</li>
+      <li>You're a high earner who will have substantial other income in retirement, but currently have minimal pretax savings</li>
+    </ul>
+
+    <div class="key-box">
+      <div class="key-label">The Case for Doing Both</div>
+      <p>For many clients, the right answer isn't Roth or pretax — it's both. Building tax diversification across pretax, Roth, and taxable accounts gives you maximum flexibility in retirement to manage your income, control your bracket, and optimize distributions year by year.</p>
+      <p>If your employer offers both a traditional and Roth 401(k), consider splitting contributions to build balances in each. The optionality is valuable even if you can't perfectly predict future tax rates — because nobody can.</p>
+    </div>
+
+    <h2>Roth <em>conversions</em>: the strategy most people overlook</h2>
+
+    <p>Even if you've been contributing pretax for years, it's not too late to shift the balance. Roth conversions — moving money from a traditional IRA to a Roth IRA and paying the tax now — are one of the most powerful tools in retirement planning.</p>
+
+    <p>The best windows for conversions are often:</p>
+    <ul>
+      <li><strong>Early retirement, pre-Social Security:</strong> income often dips before RMDs and Social Security kick in, creating a low-bracket window</li>
+      <li><strong>Years when income is temporarily lower</strong> due to job transitions, sabbaticals, or business losses</li>
+      <li><strong>Market downturns:</strong> converting when account values are depressed means you pay tax on less money, and future recovery happens tax-free</li>
+    </ul>
+
+    <p>Conversion strategy requires careful modeling. Converting too much in a single year can push you into a higher bracket and trigger IRMAA surcharges two years later. Converting too little leaves the pretax balance growing — and the tax liability with it. Getting the sizing right is where a financial planner adds real value.</p>
+
+    <div class="article-divider"></div>
+
+    <h2>The bottom line</h2>
+
+    <p>The Roth vs. pretax decision isn't one you make once and forget. It should be revisited every year as your income, tax situation, and retirement timeline evolve. And it doesn't have to be all-or-nothing — building tax diversification across account types is often the most resilient approach.</p>
+
+    <p>If you're not sure which direction makes sense for your situation, or if you have a large pretax balance and want to think through a conversion strategy, we're happy to model it out specifically for your income picture and retirement timeline.</p>
+
+  </article>
+
+  <aside class="article-sidebar">
+    <div class="sidebar-card">
+      <h4>Not sure which is right for you?</h4>
+      <p>We'll model your specific situation — current bracket, retirement income projection, and conversion opportunity.</p>
+      <a href="contact.html" class="sidebar-cta">Get a Retirement Analysis →</a>
+    </div>
+    <div class="sidebar-card" style="border-top-color:rgba(13,31,53,0.15);">
+      <div class="related-label">Related Articles</div>
+      <a href="article-market-commentary.html" class="related-link">
+        <div class="related-tag">Market Commentary</div>
+        <div class="related-title">Staying Disciplined When Headlines Drive Fear</div>
+      </a>
+      <a href="article-tax-loss-harvesting.html" class="related-link">
+        <div class="related-tag">Tax Planning</div>
+        <div class="related-title">The Real Value of Tax-Loss Harvesting in a Direct Index</div>
+      </a>
+    </div>
+    <div class="sidebar-card" style="border-top-color:rgba(13,31,53,0.15);">
+      <div class="related-label">About the Author</div>
+      <p style="font-size:0.82rem;line-height:1.65;color:var(--text-mid);">Tait Herbig is the founder of Herbig Wealth Management, an independent RIA based in Houston, TX. He specializes in retirement planning, tax strategy, and comprehensive financial planning for individuals and families.</p>
+      <a href="about.html" style="font-size:0.78rem;color:var(--gold);text-decoration:none;letter-spacing:0.06em;">Read Full Bio →</a>
+    </div>
+  </aside>
+</div>
+
+<div class="article-cta">
+  <div>
+    <h3>Let's build your retirement strategy.</h3>
+    <p>Roth, pretax, conversions — we'll model what's right for your specific situation.</p>
+  </div>
+  <a href="contact.html" class="btn-primary">Schedule a Consultation →</a>
+</div>
+
+<footer>
+  <div>
+    <div class="footer-logo">Herbig Wealth Management · Houston, TX</div>
+    <p class="footer-disc">This article is for informational purposes only and does not constitute investment or tax advice. Individual results will vary. Consult a tax professional before making contribution or conversion decisions. Herbig Wealth Management is an independent registered investment adviser. Securities held in client accounts through Altruist Financial LLC, member FINRA/SIPC. Altruist Financial LLC and Herbig Wealth Management are separate, unaffiliated entities.</p>
+  </div>
+  <div class="footer-links">
+    <a href="#">Form ADV</a><a href="#">Disclosures</a><a href="#">Privacy</a><a href="index.html">Home</a>
+  </div>
+</footer>
+
+<script>
+  const ham=document.getElementById('hamburger'),drawer=document.getElementById('mobile-drawer');
+  ham.addEventListener('click',()=>{ham.classList.toggle('open');drawer.classList.toggle('open');document.body.style.overflow=drawer.classList.contains('open')?'hidden':'';});
+  drawer.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{ham.classList.remove('open');drawer.classList.remove('open');document.body.style.overflow='';}));
+</script>
+</body>
+</html>

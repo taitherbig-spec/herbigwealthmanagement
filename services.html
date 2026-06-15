@@ -1,0 +1,1032 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Herbig Wealth Management | Services</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0d1f35;
+    --navy-mid: #172d4a;
+    --navy-light: #1e3a56;
+    --gold: #c9a84c;
+    --gold-light: #e8c97a;
+    --cream: #f5f0e8;
+    --off-white: #faf8f4;
+    --text-dark: #1a1a2e;
+    --text-mid: #4a5568;
+    --text-light: #8a9bb0;
+    --border: rgba(201,168,76,0.2);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--off-white);
+    color: var(--text-dark);
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; width: 100%; z-index: 200;
+    padding: 0 60px;
+    height: 72px;
+    display: flex; align-items: center; justify-content: space-between;
+    background: rgba(13,31,53,0.97);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(201,168,76,0.12);
+    transition: background 0.3s;
+  }
+  .nav-links { display: flex; gap: 32px; list-style: none; }
+  .nav-links a {
+    color: rgba(255,255,255,0.7); text-decoration: none;
+    font-size: 0.83rem; letter-spacing: 0.05em;
+    transition: color 0.2s; padding: 4px 0;
+    border-bottom: 1px solid transparent;
+  }
+  .nav-links a:hover, .nav-links a.active { color: var(--gold-light); border-bottom-color: var(--gold); }
+  .nav-cta {
+    background: transparent; border: 1px solid var(--gold);
+    color: var(--gold); padding: 8px 20px;
+    font-family: 'DM Sans', sans-serif; font-size: 0.8rem;
+    letter-spacing: 0.08em; cursor: pointer;
+    transition: all 0.25s; text-decoration: none;
+  }
+  .nav-cta:hover { background: var(--gold); color: var(--navy); }
+
+  /* Mobile hamburger */
+  .hamburger {
+    display: none; flex-direction: column; gap: 5px; cursor: pointer;
+    padding: 4px; background: none; border: none;
+  }
+  .hamburger span {
+    display: block; width: 24px; height: 1.5px;
+    background: rgba(255,255,255,0.8); transition: all 0.3s;
+  }
+  .hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+  .hamburger.open span:nth-child(2) { opacity: 0; }
+  .hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+  /* Mobile drawer */
+  .mobile-drawer {
+    position: fixed; top: 72px; left: 0; right: 0; bottom: 0;
+    background: var(--navy); z-index: 190;
+    padding: 40px 32px;
+    transform: translateX(100%); transition: transform 0.35s cubic-bezier(0.4,0,0.2,1);
+    display: flex; flex-direction: column; gap: 8px;
+    overflow-y: auto;
+  }
+  .mobile-drawer.open { transform: translateX(0); }
+  .mobile-drawer a {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.8rem; font-weight: 300; color: rgba(255,255,255,0.8);
+    text-decoration: none; padding: 12px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+    transition: color 0.2s;
+  }
+  .mobile-drawer a:hover { color: var(--gold-light); }
+  .mobile-drawer .drawer-cta {
+    margin-top: 32px; background: var(--gold); color: var(--navy);
+    padding: 16px 28px; font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem; font-weight: 500; letter-spacing: 0.08em;
+    text-align: center; border: none;
+  }
+
+  /* ── PAGE HERO ── */
+  .page-hero {
+    background: var(--navy);
+    padding: 140px 60px 80px;
+    position: relative; overflow: hidden;
+  }
+  .page-hero-grid {
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(201,168,76,0.035) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(201,168,76,0.035) 1px, transparent 1px);
+    background-size: 80px 80px;
+    pointer-events: none;
+  }
+  .page-hero-inner { position: relative; z-index: 2; max-width: 1200px; margin: 0 auto; }
+  .breadcrumb {
+    font-size: 0.72rem; letter-spacing: 0.15em; color: rgba(255,255,255,0.35);
+    text-transform: uppercase; margin-bottom: 20px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .breadcrumb a { color: var(--gold); text-decoration: none; }
+  .breadcrumb span { color: rgba(255,255,255,0.2); }
+  .page-hero h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.8rem, 5vw, 4.2rem);
+    font-weight: 300; color: #fff; line-height: 1.1;
+    margin-bottom: 20px;
+  }
+  .page-hero h1 em { font-style: italic; color: var(--gold-light); }
+  .page-hero-sub {
+    font-size: 1rem; color: rgba(255,255,255,0.55); max-width: 600px;
+    line-height: 1.75; font-weight: 300;
+  }
+
+  /* ── SERVICE NAV TABS ── */
+  .service-tabs-wrap {
+    background: var(--navy-mid);
+    border-bottom: 1px solid rgba(201,168,76,0.12);
+    position: sticky; top: 72px; z-index: 100;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .service-tabs-wrap::-webkit-scrollbar { display: none; }
+  .service-tabs {
+    display: flex; max-width: 1200px; margin: 0 auto;
+    padding: 0 60px;
+  }
+  .tab-btn {
+    background: none; border: none; cursor: pointer;
+    padding: 18px 20px;
+    font-family: 'DM Sans', sans-serif; font-size: 0.78rem;
+    letter-spacing: 0.06em; color: rgba(255,255,255,0.45);
+    white-space: nowrap; transition: all 0.2s;
+    border-bottom: 2px solid transparent; margin-bottom: -1px;
+  }
+  .tab-btn:hover { color: rgba(255,255,255,0.75); }
+  .tab-btn.active { color: var(--gold-light); border-bottom-color: var(--gold); }
+
+  /* ── SERVICE PANELS ── */
+  .service-panel { display: none; }
+  .service-panel.active { display: block; }
+
+  /* ── PANEL LAYOUT ── */
+  .panel-intro {
+    padding: 80px 60px;
+    display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 80px;
+    align-items: start; max-width: 1200px; margin: 0 auto;
+  }
+  .panel-intro-text h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 3.5vw, 2.8rem);
+    font-weight: 300; color: var(--navy); line-height: 1.2;
+    margin-bottom: 24px;
+  }
+  .panel-intro-text h2 em { font-style: italic; }
+  .panel-intro-text p {
+    font-size: 1rem; line-height: 1.8; color: var(--text-mid);
+    font-weight: 300; margin-bottom: 16px;
+  }
+  .panel-intro-sidebar {
+    background: var(--navy); padding: 40px 36px;
+    position: sticky; top: 140px;
+  }
+  .sidebar-label {
+    font-size: 0.7rem; letter-spacing: 0.18em; color: var(--gold);
+    text-transform: uppercase; margin-bottom: 20px;
+  }
+  .sidebar-list { list-style: none; }
+  .sidebar-list li {
+    padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.06);
+    font-size: 0.88rem; color: rgba(255,255,255,0.7);
+    display: flex; align-items: center; gap: 12px;
+  }
+  .sidebar-list li::before {
+    content: ''; width: 4px; height: 4px; background: var(--gold);
+    border-radius: 50%; flex-shrink: 0;
+  }
+  .sidebar-list li:last-child { border-bottom: none; }
+  .sidebar-cta {
+    display: block; margin-top: 28px;
+    background: var(--gold); color: var(--navy);
+    padding: 13px 24px; text-align: center;
+    font-size: 0.82rem; letter-spacing: 0.08em; font-weight: 500;
+    text-decoration: none; transition: background 0.2s;
+  }
+  .sidebar-cta:hover { background: var(--gold-light); }
+
+  /* Detail cards row */
+  .detail-cards {
+    background: var(--cream);
+    padding: 60px;
+  }
+  .detail-cards-inner { max-width: 1200px; margin: 0 auto; }
+  .detail-cards h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.8rem; font-weight: 300; color: var(--navy);
+    margin-bottom: 36px;
+  }
+  .cards-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+  }
+  .detail-card {
+    background: #fff; padding: 28px 24px;
+    border-top: 2px solid transparent; transition: border-color 0.25s;
+  }
+  .detail-card:hover { border-top-color: var(--gold); }
+  .card-icon {
+    width: 40px; height: 40px; border: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 16px; color: var(--gold);
+  }
+  .detail-card h4 {
+    font-size: 0.92rem; font-weight: 500; color: var(--navy);
+    margin-bottom: 8px;
+  }
+  .detail-card p { font-size: 0.82rem; line-height: 1.65; color: var(--text-mid); }
+
+  /* Who benefits */
+  .who-benefits {
+    padding: 60px; max-width: 1200px; margin: 0 auto;
+  }
+  .who-benefits h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.8rem; font-weight: 300; color: var(--navy); margin-bottom: 32px;
+  }
+  .benefit-pills { display: flex; flex-wrap: wrap; gap: 12px; }
+  .pill {
+    border: 1px solid rgba(13,31,53,0.15);
+    padding: 10px 18px; font-size: 0.83rem; color: var(--navy);
+    letter-spacing: 0.03em; transition: all 0.2s; cursor: default;
+  }
+  .pill:hover { background: var(--navy); color: #fff; border-color: var(--navy); }
+
+  /* ── BOTTOM CTA STRIP ── */
+  .bottom-cta {
+    background: var(--navy);
+    padding: 70px 60px;
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 40px;
+  }
+  .bottom-cta-text h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2rem; font-weight: 300; color: #fff; margin-bottom: 8px;
+  }
+  .bottom-cta-text p { color: rgba(255,255,255,0.5); font-size: 0.9rem; }
+  .btn-primary {
+    background: var(--gold); color: var(--navy);
+    padding: 14px 32px; font-size: 0.85rem;
+    letter-spacing: 0.08em; font-weight: 500;
+    text-decoration: none; white-space: nowrap;
+    transition: background 0.2s; display: inline-block;
+  }
+  .btn-primary:hover { background: var(--gold-light); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: #07111f;
+    padding: 40px 60px;
+    display: flex; align-items: center; justify-content: space-between;
+    border-top: 1px solid rgba(201,168,76,0.1); flex-wrap: wrap; gap: 20px;
+  }
+  .footer-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.2rem; color: rgba(255,255,255,0.4); letter-spacing: 0.08em;
+  }
+  .footer-disc {
+    font-size: 0.68rem; color: rgba(255,255,255,0.2); max-width: 580px; line-height: 1.6;
+  }
+  .footer-links { display: flex; gap: 20px; }
+  .footer-links a {
+    font-size: 0.72rem; color: rgba(255,255,255,0.3); text-decoration: none; letter-spacing: 0.06em;
+  }
+  .footer-links a:hover { color: var(--gold); }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    nav { padding: 0 24px; }
+    .nav-links, .nav-cta { display: none; }
+    .hamburger { display: flex; }
+    .page-hero { padding: 110px 24px 60px; }
+    .panel-intro { grid-template-columns: 1fr; gap: 40px; padding: 50px 24px; }
+    .panel-intro-sidebar { position: static; }
+    .detail-cards { padding: 40px 24px; }
+    .cards-grid { grid-template-columns: 1fr 1fr; }
+    .who-benefits { padding: 40px 24px; }
+    .bottom-cta { flex-direction: column; align-items: flex-start; padding: 50px 24px; }
+    .service-tabs { padding: 0 24px; }
+    footer { flex-direction: column; padding: 32px 24px; }
+  }
+  @media (max-width: 600px) {
+    .cards-grid { grid-template-columns: 1fr; }
+  }
+
+  /* Animations */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .page-hero h1 { animation: fadeUp 0.7s ease 0.1s both; }
+  .page-hero-sub { animation: fadeUp 0.7s ease 0.25s both; }
+
+  /* ── LOGO — Tommy Hilfiger inspired ── */
+  .logo {
+    display: flex; align-items: center; gap: 10px;
+    text-decoration: none;
+  }
+  
+  .logo-wordmark {
+    display: flex; flex-direction: column; align-items: center; gap: 1px;
+  }
+  .logo-main {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1.15rem; font-weight: 500;
+    letter-spacing: 0.22em; color: #fff;
+    line-height: 1;
+  }
+  .logo-sub {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.48rem; font-weight: 400;
+    letter-spacing: 0.28em; color: rgba(255,255,255,0.7);
+    line-height: 1; text-transform: uppercase;
+  }
+
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="main-nav">
+  <a href="index.html" class="logo"><span class="logo-wordmark"><span class="logo-main">HERBIG</span><span class="logo-sub">WEALTH MANAGEMENT</span></span></a>
+  <ul class="nav-links">
+    <li><a href="services.html" class="active">Services</a></li>
+    <li><a href="#">About</a></li>
+    <li><a href="#">Who We Serve</a></li>
+    <li><a href="#">Process</a></li>
+    <li><a href="#">Insights</a></li>
+  </ul>
+  <a href="#contact" class="nav-cta">Let's Connect</a>
+  <button class="hamburger" id="hamburger" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- MOBILE DRAWER -->
+<div class="mobile-drawer" id="mobile-drawer">
+  <a href="index.html">Home</a>
+  <a href="services.html">Services</a>
+  <a href="#">About Tait</a>
+  <a href="#">Who We Serve</a>
+  <a href="#">Our Process</a>
+  <a href="#">Insights</a>
+  <a href="#contact" class="drawer-cta">Let's Connect</a>
+</div>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <div class="page-hero-grid"></div>
+  <div class="page-hero-inner">
+    <div class="breadcrumb">
+      <a href="index.html">Home</a>
+      <span>/</span>
+      Services
+    </div>
+    <h1>Comprehensive<br><em>Financial Solutions</em></h1>
+    <p class="page-hero-sub">Eight integrated service areas designed to align every dimension of your financial life — from daily cash flow to generational wealth transfer.</p>
+  </div>
+</div>
+
+<!-- SERVICE TABS -->
+<div class="service-tabs-wrap">
+  <div class="service-tabs">
+    <button class="tab-btn active" data-panel="fp">Financial Planning</button>
+    <button class="tab-btn" data-panel="im">Investment Mgmt</button>
+    <button class="tab-btn" data-panel="ts">Tax Strategy</button>
+    <button class="tab-btn" data-panel="rp">Retirement</button>
+    <button class="tab-btn" data-panel="bc">Benefits & Comp</button>
+    <button class="tab-btn" data-panel="hf">Healthcare</button>
+    <button class="tab-btn" data-panel="ir">Insurance & Risk</button>
+    <button class="tab-btn" data-panel="ep">Estate Planning</button>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     01  FINANCIAL PLANNING
+═══════════════════════════════════════════ -->
+<div class="service-panel active" id="panel-fp">
+  <div class="panel-intro">
+    <div class="panel-intro-text">
+      <div style="font-size:0.7rem;letter-spacing:0.18em;color:var(--gold);text-transform:uppercase;margin-bottom:16px;">01 · Financial Planning</div>
+      <h2>A plan as <em>dynamic</em> as your life.</h2>
+      <p>True financial planning is not a document you file away — it's a living strategy that evolves as your career, family, and goals change. At Herbig Wealth Management, we build comprehensive plans that connect every financial decision you make into a cohesive, forward-looking picture.</p>
+      <p>We start with a deep discovery process: where you are today, where you want to go, and what's standing in the way. From there, we build a roadmap covering cash flow, debt, savings rates, protection, and long-term wealth accumulation — all stress-tested against real scenarios.</p>
+      <p>Whether you're building from scratch or optimizing an existing financial picture, you'll leave every planning meeting with clarity, confidence, and specific next actions.</p>
+    </div>
+    <div class="panel-intro-sidebar">
+      <div class="sidebar-label">What's Included</div>
+      <ul class="sidebar-list">
+        <li>Net worth & cash flow analysis</li>
+        <li>Goal prioritization & timeline mapping</li>
+        <li>Savings rate optimization</li>
+        <li>Debt payoff strategy</li>
+        <li>Emergency fund & liquidity planning</li>
+        <li>Education funding (529 strategies)</li>
+        <li>Major purchase planning</li>
+        <li>Annual plan reviews & updates</li>
+      </ul>
+      <a href="#contact" class="sidebar-cta">Start Your Plan →</a>
+    </div>
+  </div>
+  <div class="detail-cards">
+    <div class="detail-cards-inner">
+      <h3>How we deliver it</h3>
+      <div class="cards-grid">
+        <div class="detail-card">
+          <div class="card-icon">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="3" y="3" width="14" height="14" rx="1" stroke="currentColor" stroke-width="1.2"/><path d="M7 10h6M7 7h6M7 13h4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+          </div>
+          <h4>Discovery Session</h4>
+          <p>A thorough initial meeting covering your full financial picture — income, assets, liabilities, goals, and risk tolerance.</p>
+        </div>
+        <div class="detail-card">
+          <div class="card-icon">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M3 17l4-4 3 3 7-9" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <h4>Scenario Modeling</h4>
+          <p>We model multiple futures — early retirement, career change, market downturn — so you can make decisions with confidence.</p>
+        </div>
+        <div class="detail-card">
+          <div class="card-icon">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="7" stroke="currentColor" stroke-width="1.2"/><path d="M10 7v3l2 2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+          </div>
+          <h4>Ongoing Monitoring</h4>
+          <p>Regular check-ins keep your plan current as life changes — job transitions, new assets, family milestones, and market shifts.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="who-benefits">
+    <h3>Who this is for</h3>
+    <div class="benefit-pills">
+      <span class="pill">Young Professionals Getting Started</span>
+      <span class="pill">Dual-Income Couples</span>
+      <span class="pill">Pre-Retirees Within 10 Years of Retirement</span>
+      <span class="pill">Business Owners</span>
+      <span class="pill">Recent Liquidity Event Recipients</span>
+      <span class="pill">Families Planning for College</span>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     02  INVESTMENT MANAGEMENT
+═══════════════════════════════════════════ -->
+<div class="service-panel" id="panel-im">
+  <div class="panel-intro">
+    <div class="panel-intro-text">
+      <div style="font-size:0.7rem;letter-spacing:0.18em;color:var(--gold);text-transform:uppercase;margin-bottom:16px;">02 · Investment Management</div>
+      <h2>Portfolios built on <em>discipline</em>, not noise.</h2>
+      <p>Most investors underperform not because they pick the wrong stocks, but because they make emotional decisions when markets get uncomfortable. Herbig Wealth Management builds disciplined, evidence-based portfolios tailored to your risk tolerance, tax situation, and time horizon — and we stay the course with you through volatility.</p>
+      <p>For clients with substantial non-retirement assets, we offer direct indexing — owning individual securities instead of ETFs — which enables precise tax-loss harvesting and customization that a fund simply can't provide. This approach is particularly powerful for taxable accounts above $250K.</p>
+      <p>Every portfolio is constructed with an eye toward after-tax, after-fee returns. We don't chase performance; we build systems that compound quietly over time.</p>
+    </div>
+    <div class="panel-intro-sidebar">
+      <div class="sidebar-label">Our Approach</div>
+      <ul class="sidebar-list">
+        <li>Direct indexing (taxable accounts $250K+)</li>
+        <li>Tax-loss harvesting automation</li>
+        <li>Asset location optimization</li>
+        <li>Factor-based equity exposure</li>
+        <li>Fixed income & municipal bonds</li>
+        <li>Alternative asset evaluation</li>
+        <li>Concentrated position management</li>
+        <li>Quarterly performance reporting</li>
+      </ul>
+      <a href="#contact" class="sidebar-cta">Discuss Your Portfolio →</a>
+    </div>
+  </div>
+  <div class="detail-cards">
+    <div class="detail-cards-inner">
+      <h3>Investment disciplines we apply</h3>
+      <div class="cards-grid">
+        <div class="detail-card">
+          <div class="card-icon">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M4 16l4-5 3 3 5-8" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <h4>Direct Indexing</h4>
+          <p>Own individual securities to replicate an index with enhanced tax-loss harvesting and ESG customization capabilities unavailable in ETFs.</p>
+        </div>
+        <div class="detail-card">
+          <div class="card-icon">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 3v14M5 8l5-5 5 5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+          </div>
+          <h4>Tax-Loss Harvesting</h4>
+          <p>Systematic identification of loss opportunities at the individual security level, reducing your tax drag and improving net returns over time.</p>
+        </div>
+        <div class="detail-card">
+          <div class="card-icon">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="6" stroke="currentColor" stroke-width="1.2"/><path d="M10 7v3l2.5 1.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+          </div>
+          <h4>Asset Location</h4>
+          <p>Strategic placement of assets across taxable, tax-deferred, and tax-free accounts to minimize your lifetime tax bill on investment returns.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="who-benefits">
+    <h3>Who this is for</h3>
+    <div class="benefit-pills">
+      <span class="pill">Taxable Account Holders ($250K+)</span>
+      <span class="pill">Concentrated Single-Stock Positions</span>
+      <span class="pill">Energy Industry Executives</span>
+      <span class="pill">High-Income Earners Seeking Tax Efficiency</span>
+      <span class="pill">Inherited Portfolios</span>
+      <span class="pill">Retirees in Distribution Phase</span>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     03  TAX STRATEGY
+═══════════════════════════════════════════ -->
+<div class="service-panel" id="panel-ts">
+  <div class="panel-intro">
+    <div class="panel-intro-text">
+      <div style="font-size:0.7rem;letter-spacing:0.18em;color:var(--gold);text-transform:uppercase;margin-bottom:16px;">03 · Tax Strategy & Preparation</div>
+      <h2>Tax planning that happens <em>before</em> April.</h2>
+      <p>Most people experience tax planning as something that happens to them in April. We flip that: tax strategy is a year-round discipline that shapes every investment, retirement, and income decision you make.</p>
+      <p>Herbig Wealth Management integrates tax thinking into every aspect of your financial plan — from Roth conversion strategies to capital gain harvesting windows, from qualified dividend optimization to the timing of stock option exercises. We work alongside your CPA to implement strategies, not just identify them.</p>
+      <p>For clients with complex situations — equity compensation, rental income, business ownership, or significant capital events — proactive tax strategy can be the highest-ROI work we do together.</p>
+    </div>
+    <div class="panel-intro-sidebar">
+      <div class="sidebar-label">Tax Services</div>
+      <ul class="sidebar-list">
+        <li>Roth conversion modeling</li>
+        <li>Capital gain & loss harvesting</li>
+        <li>Qualified opportunity zone planning</li>
+        <li>Stock option exercise strategy (ISO/NSO/RSU)</li>
+        <li>NIIT & AMT mitigation</li>
+        <li>Charitable giving strategies (DAF, QCD)</li>
+        <li>Business entity tax structuring</li>
+        <li>CPA coordination & tax return review</li>
+      </ul>
+      <a href="#contact" class="sidebar-cta">Explore Tax Strategy →</a>
+    </div>
+  </div>
+  <div class="detail-cards">
+    <div class="detail-cards-inner">
+      <h3>Key planning levers</h3>
+      <div class="cards-grid">
+        <div class="detail-card">
+          <div class="card-icon">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M5 10h10M10 5v10" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+          </div>
+          <h4>Roth Conversion Strategy</h4>
+          <p>Identify optimal conversion windows based on your income, bracket trajectory, and RMD exposure to minimize lifetime taxes.</p>
+        </div>
+        <div class="detail-card">
+          <div class="card-icon">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M4 14l3-4 3 2 3-5 3 3" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <h4>Equity Comp Planning</h4>
+          <p>RSU, ISO, and NSO exercise timing strategies that consider AMT exposure, 83(b) elections, and long-term capital gain holding periods.</p>
+        </div>
+        <div class="detail-card">
+          <div class="card-icon">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="4" y="6" width="12" height="10" rx="1" stroke="currentColor" stroke-width="1.2"/><path d="M7 6V5a3 3 0 116 0v1" stroke="currentColor" stroke-width="1.2"/></svg>
+          </div>
+          <h4>Charitable Giving</h4>
+          <p>Donor-Advised Funds, Qualified Charitable Distributions, and appreciated security gifts designed to maximize deductibility and minimize capital gain recognition.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="who-benefits">
+    <h3>Who this is for</h3>
+    <div class="benefit-pills">
+      <span class="pill">High-Income W-2 Earners</span>
+      <span class="pill">Equity Compensation Recipients (RSU/ISO/NSO)</span>
+      <span class="pill">Pre-Retirees Planning Roth Conversions</span>
+      <span class="pill">Business Owners</span>
+      <span class="pill">Charitable Givers</span>
+      <span class="pill">Investors With Large Embedded Gains</span>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     04  RETIREMENT PLANNING
+═══════════════════════════════════════════ -->
+<div class="service-panel" id="panel-rp">
+  <div class="panel-intro">
+    <div class="panel-intro-text">
+      <div style="font-size:0.7rem;letter-spacing:0.18em;color:var(--gold);text-transform:uppercase;margin-bottom:16px;">04 · Retirement Planning</div>
+      <h2>Retirement built around <em>your</em> life, not a calculator.</h2>
+      <p>Retirement planning is more than projecting a savings rate and picking a number. It's about understanding what you want your life to look like — and building a financial structure that makes it sustainable through market cycles, inflation, healthcare costs, and longevity risk.</p>
+      <p>We analyze your full retirement picture: 401(k) contribution strategy, IRA and Roth optimization, Social Security timing, pension coordination (if applicable), and income distribution sequencing. For clients with employer retirement plans, we also review plan design, fund selection, and fiduciary exposure.</p>
+      <p>The goal isn't just to retire — it's to retire with confidence and never run out of money.</p>
+    </div>
+    <div class="panel-intro-sidebar">
+      <div class="sidebar-label">Retirement Services</div>
+      <ul class="sidebar-list">
+        <li>401(k) & 403(b) optimization</li>
+        <li>IRA & Roth IRA strategy</li>
+        <li>Social Security claiming analysis</li>
+        <li>Pension coordination & NUA strategy</li>
+        <li>Required Minimum Distribution planning</li>
+        <li>Retirement income sequencing</li>
+        <li>Monte Carlo scenario analysis</li>
+        <li>Healthcare & Medicare planning</li>
+      </ul>
+      <a href="#contact" class="sidebar-cta">Plan Your Retirement →</a>
+    </div>
+  </div>
+  <div class="detail-cards">
+    <div class="detail-cards-inner">
+      <h3>The three phases we plan for</h3>
+      <div class="cards-grid">
+        <div class="detail-card">
+          <div class="card-icon">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 4v6l4 2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/><circle cx="10" cy="10" r="7" stroke="currentColor" stroke-width="1.2"/></svg>
+          </div>
+          <h4>Accumulation Phase</h4>
+          <p>Maximize tax-advantaged contributions, optimize employer matches, and build the right asset mix for your timeline and risk tolerance.</p>
+        </div>
+        <div class="detail-card">
+          <div class="card-icon">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M4 10h12M10 4l6 6-6 6" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+          </div>
+          <h4>Transition Phase</h4>
+          <p>The 5–10 years before retirement: Roth conversions, sequence-of-returns risk mitigation, Social Security timing, and healthcare bridge planning.</p>
+        </div>
+        <div class="detail-card">
+          <div class="card-icon">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M6 14s0-6 4-6 4 6 4 6" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/><path d="M4 14h12" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+          </div>
+          <h4>Distribution Phase</h4>
+          <p>Sustainable withdrawal strategies, RMD planning, income tax minimization in retirement, and legacy/estate coordination.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="who-benefits">
+    <h3>Who this is for</h3>
+    <div class="benefit-pills">
+      <span class="pill">Employees With 401(k) or 403(b) Plans</span>
+      <span class="pill">Within 10 Years of Retirement</span>
+      <span class="pill">Recently Retired Individuals</span>
+      <span class="pill">Pension Recipients Planning Distributions</span>
+      <span class="pill">Business Owners Exiting</span>
+      <span class="pill">Couples With Different Retirement Timelines</span>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     05  BENEFITS & COMPENSATION
+═══════════════════════════════════════════ -->
+<div class="service-panel" id="panel-bc">
+  <div class="panel-intro">
+    <div class="panel-intro-text">
+      <div style="font-size:0.7rem;letter-spacing:0.18em;color:var(--gold);text-transform:uppercase;margin-bottom:16px;">05 · Benefits & Compensation</div>
+      <h2>Unlock the full value of your <em>compensation package</em>.</h2>
+      <p>Most employees leave significant money on the table by not fully optimizing their employer benefits. Open enrollment decisions, equity compensation elections, deferred compensation plans, and ESPP participation all have meaningful financial and tax implications that most people never analyze.</p>
+      <p>Herbig Wealth Management helps you evaluate every component of your total compensation — not just your salary — and make strategic decisions that align your benefits with your broader financial plan. We're particularly experienced with the complex compensation structures common in Houston's energy, healthcare, and corporate sectors.</p>
+    </div>
+    <div class="panel-intro-sidebar">
+      <div class="sidebar-label">Benefits Services</div>
+      <ul class="sidebar-list">
+        <li>Open enrollment strategy</li>
+        <li>RSU & stock option planning</li>
+        <li>Employee Stock Purchase Plan (ESPP)</li>
+        <li>Nonqualified deferred compensation</li>
+        <li>Executive benefits analysis</li>
+        <li>HSA maximization strategy</li>
+        <li>Group life & disability review</li>
+        <li>Severance & separation planning</li>
+      </ul>
+      <a href="#contact" class="sidebar-cta">Optimize Your Benefits →</a>
+    </div>
+  </div>
+  <div class="detail-cards">
+    <div class="detail-cards-inner">
+      <h3>Where we add the most value</h3>
+      <div class="cards-grid">
+        <div class="detail-card">
+          <div class="card-icon">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="3" y="8" width="14" height="9" rx="1" stroke="currentColor" stroke-width="1.2"/><path d="M7 8V6a3 3 0 016 0v2" stroke="currentColor" stroke-width="1.2"/></svg>
+          </div>
+          <h4>Equity Compensation</h4>
+          <p>RSU vesting strategy, ISO vs. NSO exercise timing, 83(b) elections, and concentration risk management as grants accumulate.</p>
+        </div>
+        <div class="detail-card">
+          <div class="card-icon">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 3L3 8v9h5v-5h4v5h5V8z" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg>
+          </div>
+          <h4>Deferred Compensation</h4>
+          <p>NQDC plan election strategy, distribution timing, investment option selection, and coordination with your overall tax picture.</p>
+        </div>
+        <div class="detail-card">
+          <div class="card-icon">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 4c-3.3 0-6 2.7-6 6s2.7 6 6 6 6-2.7 6-6-2.7-6-6-6z" stroke="currentColor" stroke-width="1.2"/><path d="M10 8v2l1.5 1.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+          </div>
+          <h4>Open Enrollment</h4>
+          <p>Annual benefits election guidance covering health plan selection, FSA/HSA contribution levels, life insurance, and supplemental coverage decisions.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="who-benefits">
+    <h3>Who this is for</h3>
+    <div class="benefit-pills">
+      <span class="pill">Corporate Executives</span>
+      <span class="pill">Energy Industry Professionals (XOM, COP, Shell)</span>
+      <span class="pill">Healthcare System Employees</span>
+      <span class="pill">Technology Professionals With Equity</span>
+      <span class="pill">Employees With NQDC Plans</span>
+      <span class="pill">Pre-Retirement Benefit Maximizers</span>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     06  HEALTHCARE & FAMILY
+═══════════════════════════════════════════ -->
+<div class="service-panel" id="panel-hf">
+  <div class="panel-intro">
+    <div class="panel-intro-text">
+      <div style="font-size:0.7rem;letter-spacing:0.18em;color:var(--gold);text-transform:uppercase;margin-bottom:16px;">06 · Healthcare & Family Support</div>
+      <h2>Planning for the moments that <em>matter most</em>.</h2>
+      <p>Healthcare is consistently the largest wildcard in long-term financial planning — especially in retirement. From Medicare enrollment timing to long-term care coverage to managing healthcare costs between employer coverage and Medicare eligibility at 65, the decisions you make have enormous financial consequences.</p>
+      <p>Beyond healthcare, we help families plan for the full lifecycle of financial needs: supporting aging parents, funding children's education, navigating the financial impact of divorce or disability, and ensuring your family is protected if something happens to you.</p>
+    </div>
+    <div class="panel-intro-sidebar">
+      <div class="sidebar-label">Family Services</div>
+      <ul class="sidebar-list">
+        <li>Medicare enrollment planning</li>
+        <li>Long-term care insurance analysis</li>
+        <li>Healthcare bridge to Medicare (pre-65)</li>
+        <li>Education funding (529 & alternatives)</li>
+        <li>Special needs financial planning</li>
+        <li>Divorce financial analysis</li>
+        <li>Disability income planning</li>
+        <li>Family legacy coordination</li>
+      </ul>
+      <a href="#contact" class="sidebar-cta">Discuss Family Planning →</a>
+    </div>
+  </div>
+  <div class="detail-cards">
+    <div class="detail-cards-inner">
+      <h3>Planning for life's transitions</h3>
+      <div class="cards-grid">
+        <div class="detail-card">
+          <div class="card-icon">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 17s-7-4.35-7-9a7 7 0 0114 0c0 4.65-7 9-7 9z" stroke="currentColor" stroke-width="1.2"/></svg>
+          </div>
+          <h4>Medicare Strategy</h4>
+          <p>Part A/B/D/Medigap enrollment timing, premium optimization, and IRMAA surcharge avoidance for high-income retirees.</p>
+        </div>
+        <div class="detail-card">
+          <div class="card-icon">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M7 8l3-5 3 5H7zM7 12l3 5 3-5H7z" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg>
+          </div>
+          <h4>Long-Term Care</h4>
+          <p>Objective analysis of LTC insurance, hybrid life/LTC policies, and self-insurance strategies to protect your retirement assets from care costs.</p>
+        </div>
+        <div class="detail-card">
+          <div class="card-icon">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M5 10h10M10 5v10" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/><circle cx="10" cy="10" r="7" stroke="currentColor" stroke-width="1.2"/></svg>
+          </div>
+          <h4>Education Funding</h4>
+          <p>529 plan setup, funding strategy, beneficiary planning, and coordination with financial aid to optimize the family's education investment.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="who-benefits">
+    <h3>Who this is for</h3>
+    <div class="benefit-pills">
+      <span class="pill">Families With Young Children</span>
+      <span class="pill">Adults With Aging Parents</span>
+      <span class="pill">Pre-Retirees Planning Healthcare Bridge</span>
+      <span class="pill">Individuals Approaching Medicare Eligibility</span>
+      <span class="pill">Families With Special Needs Members</span>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     07  INSURANCE & RISK
+═══════════════════════════════════════════ -->
+<div class="service-panel" id="panel-ir">
+  <div class="panel-intro">
+    <div class="panel-intro-text">
+      <div style="font-size:0.7rem;letter-spacing:0.18em;color:var(--gold);text-transform:uppercase;margin-bottom:16px;">07 · Insurance & Risk Management</div>
+      <h2>Protect what you've built before the <em>unexpected happens</em>.</h2>
+      <p>Insurance is the foundation that makes every other financial plan work. Without the right protection in place, a single event — disability, early death, lawsuit, or long-term illness — can unravel decades of disciplined saving and investing.</p>
+      <p>Herbig Wealth Management takes an objective, fee-only approach to insurance analysis. We don't sell policies. We evaluate your existing coverage, identify gaps, and make independent recommendations on what coverage makes sense given your specific situation, income, assets, and family structure. Then we help you implement the right policies at competitive terms.</p>
+    </div>
+    <div class="panel-intro-sidebar">
+      <div class="sidebar-label">Risk Services</div>
+      <ul class="sidebar-list">
+        <li>Life insurance needs analysis</li>
+        <li>Disability insurance review</li>
+        <li>Umbrella liability coverage</li>
+        <li>Long-term care coverage</li>
+        <li>Business owner key-man insurance</li>
+        <li>Policy review & optimization</li>
+        <li>Buy-sell agreement funding</li>
+        <li>Estate liquidity analysis</li>
+      </ul>
+      <a href="#contact" class="sidebar-cta">Review Your Coverage →</a>
+    </div>
+  </div>
+  <div class="detail-cards">
+    <div class="detail-cards-inner">
+      <h3>Our risk analysis framework</h3>
+      <div class="cards-grid">
+        <div class="detail-card">
+          <div class="card-icon">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 3l7 4v5c0 3.5-3 6.5-7 8-4-1.5-7-4.5-7-8V7l7-4z" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg>
+          </div>
+          <h4>Coverage Gap Analysis</h4>
+          <p>A systematic review of every protection layer — life, disability, liability, property — to find gaps before an event reveals them.</p>
+        </div>
+        <div class="detail-card">
+          <div class="card-icon">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="8" r="4" stroke="currentColor" stroke-width="1.2"/><path d="M4 18c0-3.3 2.7-6 6-6s6 2.7 6 6" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+          </div>
+          <h4>Income Protection</h4>
+          <p>Disability insurance is often under-owned by high earners. We analyze your income replacement needs and coordinate with employer group coverage.</p>
+        </div>
+        <div class="detail-card">
+          <div class="card-icon">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="3" y="3" width="14" height="14" rx="2" stroke="currentColor" stroke-width="1.2"/><path d="M7 10l2 2 4-4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <h4>Objective Recommendations</h4>
+          <p>As a fee-only advisor, we have no incentive to recommend any particular policy. Our analysis is driven by your needs, not our compensation.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="who-benefits">
+    <h3>Who this is for</h3>
+    <div class="benefit-pills">
+      <span class="pill">Families With Dependents</span>
+      <span class="pill">High-Income Professionals</span>
+      <span class="pill">Business Owners With Key-Person Exposure</span>
+      <span class="pill">Individuals With Existing Policies to Review</span>
+      <span class="pill">High-Net-Worth Individuals Needing Umbrella Coverage</span>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     08  ESTATE PLANNING
+═══════════════════════════════════════════ -->
+<div class="service-panel" id="panel-ep">
+  <div class="panel-intro">
+    <div class="panel-intro-text">
+      <div style="font-size:0.7rem;letter-spacing:0.18em;color:var(--gold);text-transform:uppercase;margin-bottom:16px;">08 · Estate Planning & Wealth Transfer</div>
+      <h2>Build a legacy that reflects your <em>values</em>.</h2>
+      <p>Estate planning isn't just for the ultra-wealthy — anyone with assets, dependents, or specific wishes for the future needs a plan. Without one, the state decides how your estate is distributed, often at significant cost and delay to your family.</p>
+      <p>Herbig Wealth Management coordinates the financial dimensions of estate planning alongside your estate attorney: beneficiary designations, asset titling, trust funding, charitable giving strategies, and the tax-efficient transfer of wealth to the next generation. We also help clients and their families think through the values and intentions behind a legacy — not just the mechanics.</p>
+      <p>For business owners and high-net-worth families, we engage with advanced strategies including GRATs, SLATs, IDGTs, and family limited partnerships to maximize what transfers to heirs and charitable causes.</p>
+    </div>
+    <div class="panel-intro-sidebar">
+      <div class="sidebar-label">Estate Services</div>
+      <ul class="sidebar-list">
+        <li>Beneficiary designation audit</li>
+        <li>Asset titling review</li>
+        <li>Trust planning coordination</li>
+        <li>Annual gift exclusion strategy</li>
+        <li>Charitable giving (DAF, CRT, CLT)</li>
+        <li>Estate tax projection & planning</li>
+        <li>Business succession planning</li>
+        <li>Multi-generational wealth strategy</li>
+      </ul>
+      <a href="#contact" class="sidebar-cta">Start Legacy Planning →</a>
+    </div>
+  </div>
+  <div class="detail-cards">
+    <div class="detail-cards-inner">
+      <h3>Estate planning essentials</h3>
+      <div class="cards-grid">
+        <div class="detail-card">
+          <div class="card-icon">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M4 5h12v12H4zM8 5V3h4v2" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg>
+          </div>
+          <h4>Document Coordination</h4>
+          <p>We review your will, trusts, POA, and healthcare directives alongside your attorney to ensure everything aligns with your current wishes and financial situation.</p>
+        </div>
+        <div class="detail-card">
+          <div class="card-icon">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="7" cy="7" r="3" stroke="currentColor" stroke-width="1.2"/><circle cx="13" cy="13" r="3" stroke="currentColor" stroke-width="1.2"/><path d="M10 10l1.5-1.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+          </div>
+          <h4>Beneficiary Audit</h4>
+          <p>Retirement accounts and life insurance pass outside of your will. We audit all designations to ensure assets flow correctly and avoid unintended tax consequences.</p>
+        </div>
+        <div class="detail-card">
+          <div class="card-icon">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 3c-3.9 0-7 3.1-7 7s3.1 7 7 7 7-3.1 7-7-3.1-7-7-7z" stroke="currentColor" stroke-width="1.2"/><path d="M10 7v3l2 2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+          </div>
+          <h4>Wealth Transfer Timing</h4>
+          <p>Strategic use of annual gift exclusions, 529 superfunding, and irrevocable trust structures to reduce your taxable estate during your lifetime.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="who-benefits">
+    <h3>Who this is for</h3>
+    <div class="benefit-pills">
+      <span class="pill">Parents With Minor Children</span>
+      <span class="pill">High-Net-Worth Families</span>
+      <span class="pill">Business Owners Planning Succession</span>
+      <span class="pill">Blended Families With Complex Wishes</span>
+      <span class="pill">Philanthropically-Minded Individuals</span>
+      <span class="pill">Anyone Without a Current Estate Plan</span>
+    </div>
+  </div>
+</div>
+
+<!-- BOTTOM CTA -->
+<div class="bottom-cta" id="contact">
+  <div class="bottom-cta-text">
+    <h3>Ready to put a plan in place?</h3>
+    <p>Start with a straightforward, no-pressure conversation about your goals.</p>
+  </div>
+  <a href="mailto:tait@herbigwealthmanagement.com" class="btn-primary">Schedule a Consultation →</a>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    <div class="footer-logo">Herbig Wealth Management · Houston, TX</div>
+    <p class="footer-disc">Herbig Wealth Management is an independent registered investment adviser. This website is for informational purposes only and does not constitute investment, tax, or legal advice. Investing involves risk. Past performance is not indicative of future results. Securities held in client accounts through Altruist Financial LLC, member FINRA/SIPC. Altruist Financial LLC and Herbig Wealth Management are separate, unaffiliated entities.</p>
+  </div>
+  <div class="footer-links">
+    <a href="#">Form ADV</a>
+    <a href="#">Disclosures</a>
+    <a href="#">Privacy</a>
+    <a href="index.html">Home</a>
+  </div>
+</footer>
+
+<script>
+  // Tab switching
+  const tabs = document.querySelectorAll('.tab-btn');
+  const panels = document.querySelectorAll('.service-panel');
+  const panelMap = { fp:'fp', im:'im', ts:'ts', rp:'rp', bc:'bc', hf:'hf', ir:'ir', ep:'ep' };
+
+  tabs.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const key = btn.dataset.panel;
+      tabs.forEach(t => t.classList.remove('active'));
+      panels.forEach(p => p.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById('panel-' + key).classList.add('active');
+      // Scroll to top of panel area
+      document.querySelector('.service-tabs-wrap').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+
+  // Scroll tabs bar to keep active tab visible
+  tabs.forEach(btn => {
+    btn.addEventListener('click', () => {
+      btn.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+    });
+  });
+
+  // Mobile hamburger
+  const ham = document.getElementById('hamburger');
+  const drawer = document.getElementById('mobile-drawer');
+  ham.addEventListener('click', () => {
+    ham.classList.toggle('open');
+    drawer.classList.toggle('open');
+    document.body.style.overflow = drawer.classList.contains('open') ? 'hidden' : '';
+  });
+  drawer.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => {
+      ham.classList.remove('open');
+      drawer.classList.remove('open');
+      document.body.style.overflow = '';
+    });
+  });
+
+  // Scroll reveal
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        e.target.style.opacity = '1';
+        e.target.style.transform = 'translateY(0)';
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.08 });
+
+  document.querySelectorAll('.detail-card, .pill, .sidebar-list li').forEach((el, i) => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(16px)';
+    el.style.transition = `opacity 0.45s ease ${(i % 6) * 60}ms, transform 0.45s ease ${(i % 6) * 60}ms`;
+    observer.observe(el);
+  });
+
+  // URL hash tab routing (optional deep linking)
+  const hash = window.location.hash.replace('#','');
+  if (hash && document.getElementById('panel-' + hash)) {
+    tabs.forEach(t => t.classList.remove('active'));
+    panels.forEach(p => p.classList.remove('active'));
+    document.querySelector(`[data-panel="${hash}"]`)?.classList.add('active');
+    document.getElementById('panel-' + hash).classList.add('active');
+  }
+</script>
+</body>
+</html>

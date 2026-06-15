@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Who We Serve | Herbig Wealth Management</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0d1f35; --navy-mid: #172d4a; --gold: #c9a84c; --gold-light: #e8c97a;
+    --cream: #f5f0e8; --off-white: #faf8f4; --text-mid: #4a5568; --text-light: #8a9bb0;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'DM Sans', sans-serif; background: var(--off-white); color: var(--navy); overflow-x: hidden; }
+
+  nav { position: fixed; top: 0; width: 100%; z-index: 200; height: 72px; padding: 0 60px; display: flex; align-items: center; justify-content: space-between; background: rgba(13,31,53,0.97); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(201,168,76,0.12); }
+  .nav-links { display: flex; gap: 32px; list-style: none; }
+  .nav-links a { color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.83rem; letter-spacing: 0.05em; transition: color 0.2s; border-bottom: 1px solid transparent; padding-bottom: 2px; }
+  .nav-links a:hover, .nav-links a.active { color: var(--gold-light); border-bottom-color: var(--gold); }
+  .nav-cta { background: transparent; border: 1px solid var(--gold); color: var(--gold); padding: 8px 20px; font-family: 'DM Sans', sans-serif; font-size: 0.8rem; letter-spacing: 0.08em; text-decoration: none; transition: all 0.25s; }
+  .nav-cta:hover { background: var(--gold); color: var(--navy); }
+  .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
+  .hamburger span { display: block; width: 24px; height: 1.5px; background: rgba(255,255,255,0.8); transition: all 0.3s; }
+  .hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+  .hamburger.open span:nth-child(2) { opacity: 0; }
+  .hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+  .mobile-drawer { position: fixed; top: 72px; left: 0; right: 0; bottom: 0; background: var(--navy); z-index: 190; padding: 40px 32px; transform: translateX(100%); transition: transform 0.35s cubic-bezier(0.4,0,0.2,1); display: flex; flex-direction: column; gap: 8px; overflow-y: auto; }
+  .mobile-drawer.open { transform: translateX(0); }
+  .mobile-drawer a { font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; font-weight: 300; color: rgba(255,255,255,0.8); text-decoration: none; padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.07); transition: color 0.2s; }
+  .mobile-drawer a:hover { color: var(--gold-light); }
+  .mobile-drawer .drawer-cta { margin-top: 32px; background: var(--gold); color: var(--navy); padding: 16px 28px; font-family: 'DM Sans', sans-serif; font-size: 0.9rem; font-weight: 500; letter-spacing: 0.08em; text-align: center; }
+
+  /* HERO */
+  .hero { background: var(--navy); padding: 140px 60px 90px; position: relative; overflow: hidden; }
+  .hero-grid { position: absolute; inset: 0; background-image: linear-gradient(rgba(201,168,76,0.035) 1px, transparent 1px), linear-gradient(90deg, rgba(201,168,76,0.035) 1px, transparent 1px); background-size: 80px 80px; pointer-events: none; }
+  .hero-inner { position: relative; z-index: 2; max-width: 700px; }
+  .breadcrumb { font-size: 0.72rem; letter-spacing: 0.15em; color: rgba(255,255,255,0.3); text-transform: uppercase; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
+  .breadcrumb a { color: var(--gold); text-decoration: none; }
+  .hero h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.8rem, 5vw, 4.2rem); font-weight: 300; color: #fff; line-height: 1.1; margin-bottom: 20px; animation: fadeUp 0.7s ease 0.1s both; }
+  .hero h1 em { font-style: italic; color: var(--gold-light); }
+  .hero p { font-size: 1rem; color: rgba(255,255,255,0.5); line-height: 1.75; font-weight: 300; animation: fadeUp 0.7s ease 0.25s both; }
+
+  /* SEGMENT CARDS */
+  .segments { padding: 80px 60px; }
+  .segments-inner { max-width: 1200px; margin: 0 auto; }
+  .segment { display: grid; grid-template-columns: 1fr 1.4fr; gap: 0; margin-bottom: 2px; background: #fff; overflow: hidden; transition: box-shadow 0.25s; }
+  .segment:hover { box-shadow: 0 4px 32px rgba(13,31,53,0.08); }
+  .segment:nth-child(even) { grid-template-columns: 1.4fr 1fr; direction: rtl; }
+  .segment:nth-child(even) > * { direction: ltr; }
+  .segment-label { background: var(--navy); padding: 48px 44px; display: flex; flex-direction: column; justify-content: center; position: relative; overflow: hidden; }
+  .segment-label::before { content: ''; position: absolute; top: -30px; right: -30px; width: 120px; height: 120px; border: 1px solid rgba(201,168,76,0.1); border-radius: 50%; }
+  .seg-num { font-family: 'Cormorant Garamond', serif; font-size: 3.5rem; font-weight: 300; color: rgba(201,168,76,0.12); line-height: 1; margin-bottom: 16px; }
+  .seg-title { font-family: 'Cormorant Garamond', serif; font-size: 1.7rem; font-weight: 300; color: #fff; margin-bottom: 10px; line-height: 1.2; }
+  .seg-title em { font-style: italic; color: var(--gold-light); }
+  .seg-tag { font-size: 0.7rem; letter-spacing: 0.14em; color: var(--gold); text-transform: uppercase; }
+  .segment-content { padding: 48px 44px; background: #fff; display: flex; flex-direction: column; justify-content: center; }
+  .segment-content p { font-size: 0.93rem; line-height: 1.8; color: var(--text-mid); margin-bottom: 20px; font-weight: 300; }
+  .seg-bullets { list-style: none; display: flex; flex-wrap: wrap; gap: 8px; }
+  .seg-bullets li { font-size: 0.78rem; padding: 5px 12px; border: 1px solid rgba(13,31,53,0.1); color: var(--navy); letter-spacing: 0.03em; transition: all 0.2s; cursor: default; }
+  .seg-bullets li:hover { background: var(--navy); color: #fff; border-color: var(--navy); }
+
+  /* ENERGY SPOTLIGHT */
+  .energy-spotlight { background: var(--cream); padding: 80px 60px; }
+  .energy-inner { max-width: 1200px; margin: 0 auto; }
+  .section-eyebrow { font-size: 0.7rem; letter-spacing: 0.2em; color: var(--gold); text-transform: uppercase; font-weight: 500; margin-bottom: 16px; }
+  .energy-spotlight h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.8rem, 3vw, 2.6rem); font-weight: 300; color: var(--navy); margin-bottom: 16px; }
+  .energy-spotlight h2 em { font-style: italic; }
+  .energy-spotlight .intro { font-size: 0.95rem; color: var(--text-mid); line-height: 1.75; max-width: 640px; margin-bottom: 48px; }
+  .company-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .company-card { background: #fff; padding: 28px 24px; border-left: 2px solid transparent; transition: border-color 0.25s; }
+  .company-card:hover { border-left-color: var(--gold); }
+  .company-ticker { font-size: 0.7rem; letter-spacing: 0.14em; color: var(--gold); text-transform: uppercase; margin-bottom: 6px; font-weight: 500; }
+  .company-name { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; font-weight: 400; color: var(--navy); margin-bottom: 10px; }
+  .company-desc { font-size: 0.8rem; line-height: 1.65; color: var(--text-mid); }
+
+  /* CTA */
+  .bottom-cta { background: var(--navy); padding: 70px 60px; display: flex; align-items: center; justify-content: space-between; gap: 40px; }
+  .bottom-cta h3 { font-family: 'Cormorant Garamond', serif; font-size: 2rem; font-weight: 300; color: #fff; margin-bottom: 8px; }
+  .bottom-cta p { color: rgba(255,255,255,0.5); font-size: 0.9rem; }
+  .btn-primary { background: var(--gold); color: var(--navy); padding: 14px 32px; font-size: 0.85rem; letter-spacing: 0.08em; font-weight: 500; text-decoration: none; white-space: nowrap; transition: background 0.2s; display: inline-block; }
+  .btn-primary:hover { background: var(--gold-light); }
+
+  footer { background: #07111f; padding: 40px 60px; display: flex; align-items: center; justify-content: space-between; border-top: 1px solid rgba(201,168,76,0.1); flex-wrap: wrap; gap: 20px; }
+  .footer-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; color: rgba(255,255,255,0.4); letter-spacing: 0.08em; margin-bottom: 8px; }
+  .footer-disc { font-size: 0.68rem; color: rgba(255,255,255,0.2); max-width: 560px; line-height: 1.6; }
+  .footer-links { display: flex; gap: 20px; }
+  .footer-links a { font-size: 0.72rem; color: rgba(255,255,255,0.3); text-decoration: none; letter-spacing: 0.06em; }
+  .footer-links a:hover { color: var(--gold); }
+
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+
+  @media (max-width: 900px) {
+    nav { padding: 0 24px; }
+    .nav-links, .nav-cta { display: none; }
+    .hamburger { display: flex; }
+    .hero { padding: 110px 24px 60px; }
+    .segments { padding: 40px 24px; }
+    .segment, .segment:nth-child(even) { grid-template-columns: 1fr; direction: ltr; }
+    .energy-spotlight { padding: 60px 24px; }
+    .company-grid { grid-template-columns: 1fr 1fr; }
+    .bottom-cta { flex-direction: column; align-items: flex-start; padding: 50px 24px; }
+    footer { flex-direction: column; padding: 32px 24px; }
+  }
+  @media (max-width: 600px) { .company-grid { grid-template-columns: 1fr; } }
+
+  /* ── LOGO — Tommy Hilfiger inspired ── */
+  .logo {
+    display: flex; align-items: center; gap: 10px;
+    text-decoration: none;
+  }
+  
+  .logo-wordmark {
+    display: flex; flex-direction: column; align-items: center; gap: 1px;
+  }
+  .logo-main {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1.15rem; font-weight: 500;
+    letter-spacing: 0.22em; color: #fff;
+    line-height: 1;
+  }
+  .logo-sub {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.48rem; font-weight: 400;
+    letter-spacing: 0.28em; color: rgba(255,255,255,0.7);
+    line-height: 1; text-transform: uppercase;
+  }
+
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="logo"><span class="logo-wordmark"><span class="logo-main">HERBIG</span><span class="logo-sub">WEALTH MANAGEMENT</span></span></a>
+  <ul class="nav-links">
+    <li><a href="services.html">Services</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="serve.html" class="active">Who We Serve</a></li>
+    <li><a href="index.html#process">Process</a></li>
+    <li><a href="index.html#insights">Insights</a></li>
+  </ul>
+  <a href="contact.html" class="nav-cta">Let's Connect</a>
+  <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+</nav>
+
+<div class="mobile-drawer" id="mobile-drawer">
+  <a href="index.html">Home</a>
+  <a href="services.html">Services</a>
+  <a href="about.html">About Tait</a>
+  <a href="serve.html">Who We Serve</a>
+  <a href="contact.html">Contact</a>
+  <a href="contact.html" class="drawer-cta">Let's Connect</a>
+</div>
+
+<div class="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-inner">
+    <div class="breadcrumb"><a href="index.html">Home</a><span>/</span>Who We Serve</div>
+    <h1>Built for people at<br><em>every stage</em> of wealth.</h1>
+    <p>Herbig Wealth Management works with individuals, families, business owners, and nonprofits across Houston and beyond — from those just starting to build wealth to those managing complex, multi-generational financial situations.</p>
+  </div>
+</div>
+
+<section class="segments">
+  <div class="segments-inner">
+
+    <div class="segment">
+      <div class="segment-label">
+        <div class="seg-num">01</div>
+        <div class="seg-title">Corporate<br><em>Executives</em></div>
+        <div class="seg-tag">Houston's Corporate Sector</div>
+      </div>
+      <div class="segment-content">
+        <p>High-income executives face a unique set of financial challenges: concentrated equity positions, complex compensation structures, deferred income, and the need to convert earnings into lasting wealth efficiently. We specialize in the intersection of compensation planning, tax strategy, and long-term wealth management.</p>
+        <ul class="seg-bullets">
+          <li>RSU & Stock Option Planning</li>
+          <li>Deferred Compensation Strategy</li>
+          <li>Concentrated Position Management</li>
+          <li>Executive Benefits Optimization</li>
+          <li>Tax-Efficient Wealth Accumulation</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="segment">
+      <div class="segment-label">
+        <div class="seg-num">02</div>
+        <div class="seg-title">Business Owners &<br><em>Entrepreneurs</em></div>
+        <div class="seg-tag">Small Business · Mid-Market</div>
+      </div>
+      <div class="segment-content">
+        <p>Business owners often have most of their net worth tied up in their company — and no clear plan for what comes next. We help owners separate personal wealth from business risk, design tax-efficient retirement plans for their team, and plan for eventual transitions whether that means a sale, succession, or transfer to family.</p>
+        <ul class="seg-bullets">
+          <li>Business Succession Planning</li>
+          <li>SEP-IRA & Solo 401(k) Strategy</li>
+          <li>Entity Structure & Tax Planning</li>
+          <li>Key-Person Risk Management</li>
+          <li>Exit & Liquidity Planning</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="segment">
+      <div class="segment-label">
+        <div class="seg-num">03</div>
+        <div class="seg-title">High-Net-Worth<br><em>Individuals</em></div>
+        <div class="seg-tag">$1M+ Investable Assets</div>
+      </div>
+      <div class="segment-content">
+        <p>Clients with significant investable assets need more than portfolio management — they need a fully integrated financial strategy that minimizes taxes, manages complexity, and positions wealth to last across generations. We deliver that coordination with the personal attention of an independent advisor, not the scale of a wirehouse.</p>
+        <ul class="seg-bullets">
+          <li>Direct Indexing & TLH</li>
+          <li>Estate & Legacy Planning</li>
+          <li>Charitable Giving Strategy</li>
+          <li>Multi-Account Tax Coordination</li>
+          <li>Alternative Asset Evaluation</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="segment">
+      <div class="segment-label">
+        <div class="seg-num">04</div>
+        <div class="seg-title">Retirees &<br><em>Affluent Families</em></div>
+        <div class="seg-tag">Wealth Preservation · Income</div>
+      </div>
+      <div class="segment-content">
+        <p>Retirement brings a new set of financial challenges: sustainable income, healthcare costs, RMD management, and the desire to leave something meaningful behind. We help retirees and their families navigate the distribution phase with confidence — spending intentionally without fear of running out.</p>
+        <ul class="seg-bullets">
+          <li>Retirement Income Strategy</li>
+          <li>RMD Planning & Roth Conversions</li>
+          <li>Social Security Optimization</li>
+          <li>Medicare & Long-Term Care</li>
+          <li>Multi-Generational Wealth Transfer</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="segment">
+      <div class="segment-label">
+        <div class="seg-num">05</div>
+        <div class="seg-title">Nonprofits &<br><em>Foundations</em></div>
+        <div class="seg-tag">Mission-Driven Organizations</div>
+      </div>
+      <div class="segment-content">
+        <p>Nonprofits and foundations deserve the same quality of financial stewardship as individual clients. We help organizations invest their assets responsibly, design retirement plans for their staff, and advise boards on fiduciary responsibilities — so leadership can stay focused on mission.</p>
+        <ul class="seg-bullets">
+          <li>Endowment Investment Policy</li>
+          <li>403(b) Plan Design & Oversight</li>
+          <li>Board Fiduciary Education</li>
+          <li>Charitable Giving Coordination</li>
+          <li>Financial Wellness for Staff</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="segment">
+      <div class="segment-label">
+        <div class="seg-num">06</div>
+        <div class="seg-title">Emerging<br><em>Wealth</em></div>
+        <div class="seg-tag">Building From a Strong Foundation</div>
+      </div>
+      <div class="segment-content">
+        <p>You don't need to be wealthy to benefit from great financial advice — in fact, the earlier you start, the more it matters. We work with young professionals and growing families who want to build smart habits, maximize their savings, and make confident financial decisions from the start.</p>
+        <ul class="seg-bullets">
+          <li>Financial Plan Foundation</li>
+          <li>Student Loan Strategy</li>
+          <li>First Home & Major Purchase Planning</li>
+          <li>401(k) & IRA Optimization</li>
+          <li>Insurance & Protection Review</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ENERGY SPOTLIGHT -->
+<section class="energy-spotlight">
+  <div class="energy-inner">
+    <div class="section-eyebrow">Specialized Focus</div>
+    <h2>Houston Energy Industry<br><em>Professionals</em></h2>
+    <p class="intro">Houston is the energy capital of the world — and its workforce has some of the most complex financial situations in any industry. Pension options, deferred compensation, equity grants, and concentrated positions in employer stock require specialized expertise. Herbig Wealth Management has deep familiarity with the compensation structures of the region's major energy employers.</p>
+    <div class="company-grid">
+      <div class="company-card">
+        <div class="company-ticker">XOM</div>
+        <div class="company-name">ExxonMobil</div>
+        <div class="company-desc">Pension coordination, RSU planning, savings plan optimization, and concentrated XOM position management for current and former employees.</div>
+      </div>
+      <div class="company-card">
+        <div class="company-ticker">COP</div>
+        <div class="company-name">ConocoPhillips</div>
+        <div class="company-desc">Benefits analysis, equity compensation strategy, and retirement planning for one of Houston's largest employers.</div>
+      </div>
+      <div class="company-card">
+        <div class="company-ticker">CVX / SHEL</div>
+        <div class="company-name">Chevron & Shell</div>
+        <div class="company-desc">Deferred compensation, defined benefit coordination, and wealth management for energy sector professionals navigating complex benefit packages.</div>
+      </div>
+      <div class="company-card">
+        <div class="company-ticker">ET / LNG</div>
+        <div class="company-name">Midstream & LNG</div>
+        <div class="company-desc">Portfolio strategy and income planning for professionals and investors with significant midstream energy exposure.</div>
+      </div>
+      <div class="company-card">
+        <div class="company-ticker">HAL / SLB</div>
+        <div class="company-name">Oilfield Services</div>
+        <div class="company-desc">Financial planning for Halliburton, SLB, and oilfield services professionals navigating cyclical income and equity compensation.</div>
+      </div>
+      <div class="company-card">
+        <div class="company-ticker">P66 / VLO</div>
+        <div class="company-name">Refining & Downstream</div>
+        <div class="company-desc">Comprehensive wealth management for refining industry professionals at Phillips 66, Valero, and related companies.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="bottom-cta">
+  <div>
+    <h3>Don't see your situation listed?</h3>
+    <p>If you're not sure whether we're the right fit, let's talk. No pressure, no obligation.</p>
+  </div>
+  <a href="contact.html" class="btn-primary">Schedule a Conversation →</a>
+</div>
+
+<footer>
+  <div>
+    <div class="footer-logo">Herbig Wealth Management · Houston, TX</div>
+    <p class="footer-disc">Herbig Wealth Management is an independent registered investment adviser. This website is for informational purposes only and does not constitute investment, tax, or legal advice. Investing involves risk. Past performance is not indicative of future results. Securities held in client accounts through Altruist Financial LLC, member FINRA/SIPC. Altruist Financial LLC and Herbig Wealth Management are separate, unaffiliated entities.</p>
+  </div>
+  <div class="footer-links">
+    <a href="#">Form ADV</a><a href="#">Disclosures</a><a href="#">Privacy</a><a href="index.html">Home</a>
+  </div>
+</footer>
+
+<script>
+  const ham = document.getElementById('hamburger');
+  const drawer = document.getElementById('mobile-drawer');
+  ham.addEventListener('click', () => { ham.classList.toggle('open'); drawer.classList.toggle('open'); document.body.style.overflow = drawer.classList.contains('open') ? 'hidden' : ''; });
+  drawer.querySelectorAll('a').forEach(a => a.addEventListener('click', () => { ham.classList.remove('open'); drawer.classList.remove('open'); document.body.style.overflow = ''; }));
+
+  const obs = new IntersectionObserver(entries => entries.forEach(e => { if (e.isIntersecting) { e.target.style.opacity='1'; e.target.style.transform='translateY(0)'; obs.unobserve(e.target); } }), { threshold: 0.06 });
+  document.querySelectorAll('.segment, .company-card').forEach((el, i) => { el.style.opacity='0'; el.style.transform='translateY(20px)'; el.style.transition=`opacity 0.5s ease ${(i%3)*80}ms, transform 0.5s ease ${(i%3)*80}ms`; obs.observe(el); });
+</script>
+</body>
+</html>

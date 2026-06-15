@@ -1,0 +1,954 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Herbig Wealth Management | Financial Planning & Wealth Management | Houston, TX</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0d1f35;
+    --navy-mid: #172d4a;
+    --gold: #c9a84c;
+    --gold-light: #e8c97a;
+    --cream: #f5f0e8;
+    --off-white: #faf8f4;
+    --text-dark: #1a1a2e;
+    --text-mid: #4a5568;
+    --text-light: #8a9bb0;
+    --border: rgba(201,168,76,0.2);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--off-white);
+    color: var(--text-dark);
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; width: 100%; z-index: 100;
+    padding: 20px 60px;
+    display: flex; align-items: center; justify-content: space-between;
+    background: rgba(13,31,53,0.96);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(201,168,76,0.15);
+  }
+  .nav-links { display: flex; gap: 36px; list-style: none; }
+  .nav-links a {
+    color: rgba(255,255,255,0.75); text-decoration: none;
+    font-size: 0.85rem; letter-spacing: 0.05em; font-weight: 400;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--gold-light); }
+  .nav-cta {
+    background: transparent; border: 1px solid var(--gold);
+    color: var(--gold); padding: 9px 22px;
+    font-family: 'DM Sans', sans-serif; font-size: 0.82rem;
+    letter-spacing: 0.08em; cursor: pointer;
+    transition: all 0.25s; text-decoration: none;
+  }
+  .nav-cta:hover { background: var(--gold); color: var(--navy); }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    background: var(--navy);
+    display: flex;
+    position: relative; overflow: hidden;
+  }
+  .hero-grid-overlay {
+    position: absolute; inset: 0; pointer-events: none;
+    background-image:
+      linear-gradient(rgba(201,168,76,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(201,168,76,0.04) 1px, transparent 1px);
+    background-size: 80px 80px;
+  }
+  .hero-left {
+    padding: 160px 60px 80px;
+    display: flex; flex-direction: column; justify-content: center;
+    position: relative; z-index: 2;
+  }
+  .hero-eyebrow {
+    font-size: 0.75rem; letter-spacing: 0.18em; color: var(--gold);
+    text-transform: uppercase; font-weight: 500; margin-bottom: 24px;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .hero-eyebrow::before {
+    content: ''; width: 32px; height: 1px; background: var(--gold);
+  }
+  h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(3rem, 5vw, 4.8rem);
+    font-weight: 300; line-height: 1.1;
+    color: #fff; margin-bottom: 28px;
+  }
+  h1 em { font-style: italic; color: var(--gold-light); }
+  .hero-sub {
+    font-size: 1rem; line-height: 1.7; color: rgba(255,255,255,0.6);
+    max-width: 440px; margin-bottom: 48px; font-weight: 300;
+  }
+  .hero-actions { display: flex; gap: 16px; align-items: center; }
+  .btn-primary {
+    background: var(--gold); color: var(--navy);
+    padding: 14px 32px; font-size: 0.85rem;
+    letter-spacing: 0.08em; font-weight: 500;
+    text-decoration: none; transition: all 0.25s;
+    font-family: 'DM Sans', sans-serif;
+    display: inline-block;
+  }
+  .btn-primary:hover { background: var(--gold-light); }
+  .btn-ghost {
+    color: rgba(255,255,255,0.7); font-size: 0.85rem;
+    text-decoration: none; letter-spacing: 0.05em;
+    display: flex; align-items: center; gap: 8px;
+    transition: color 0.2s;
+  }
+  .btn-ghost:hover { color: #fff; }
+  .btn-ghost svg { transition: transform 0.2s; }
+  .btn-ghost:hover svg { transform: translateX(4px); }
+
+  .hero-scroll {
+    position: absolute; bottom: 40px; left: 60px;
+    font-size: 0.72rem; letter-spacing: 0.15em; color: rgba(255,255,255,0.3);
+    text-transform: uppercase; display: flex; align-items: center; gap: 12px;
+  }
+  .hero-scroll::after {
+    content: ''; width: 1px; height: 48px;
+    background: linear-gradient(to bottom, rgba(255,255,255,0.3), transparent);
+  }
+
+  /* ── SECTION BASICS ── */
+  section { padding: 100px 60px; }
+  .section-eyebrow {
+    font-size: 0.72rem; letter-spacing: 0.2em; color: var(--gold);
+    text-transform: uppercase; font-weight: 500; margin-bottom: 16px;
+  }
+  h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.2rem, 4vw, 3.4rem);
+    font-weight: 300; line-height: 1.15; color: var(--navy);
+  }
+  h2 em { font-style: italic; }
+
+  /* ── ABOUT / INTRO ── */
+  .about {
+    background: var(--cream);
+    display: flex; gap: 80px; align-items: center;
+  }
+  .about-text p {
+    font-size: 1.05rem; line-height: 1.8; color: var(--text-mid);
+    margin-top: 24px; font-weight: 300;
+  }
+  .about-text .quote-mark {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 5rem; color: var(--gold); line-height: 0.5;
+    margin-bottom: 16px; display: block; opacity: 0.4;
+  }
+  .about-visual {
+    position: relative; padding: 40px;
+  }
+  .about-card {
+    background: var(--navy);
+    padding: 48px 40px; color: #fff;
+    position: relative;
+  }
+  .about-card::after {
+    content: ''; position: absolute;
+    bottom: -16px; right: -16px;
+    width: 100%; height: 100%;
+    border: 1px solid var(--gold);
+    z-index: -1;
+  }
+  .about-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.2rem; font-weight: 300; margin-bottom: 6px;
+  }
+  .about-title { font-size: 0.8rem; letter-spacing: 0.12em; color: var(--gold); text-transform: uppercase; }
+  .about-divider { width: 40px; height: 1px; background: var(--gold); margin: 20px 0; }
+  .about-bio { font-size: 0.9rem; color: rgba(255,255,255,0.65); line-height: 1.75; }
+  .designations { margin-top: 24px; display: flex; flex-wrap: wrap; gap: 8px; }
+  .desig-tag {
+    font-size: 0.7rem; letter-spacing: 0.1em;
+    border: 1px solid rgba(201,168,76,0.4);
+    padding: 4px 10px; color: var(--gold-light);
+  }
+
+  /* ── SERVICES ── */
+  .services { background: var(--off-white); }
+  .services-header { max-width: 560px; margin-bottom: 60px; }
+  .services-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px;
+    background: rgba(0,0,0,0.08);
+  }
+  .service-card {
+    background: var(--off-white); padding: 36px 28px;
+    transition: all 0.25s; cursor: default;
+    position: relative; overflow: hidden;
+  }
+  .service-card::before {
+    content: ''; position: absolute; bottom: 0; left: 0;
+    width: 100%; height: 2px;
+    background: var(--gold); transform: scaleX(0);
+    transition: transform 0.3s; transform-origin: left;
+  }
+  .service-card:hover::before { transform: scaleX(1); }
+  .service-card:hover { background: #fff; }
+  .service-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.5rem; font-weight: 300; color: rgba(201,168,76,0.2);
+    line-height: 1; margin-bottom: 16px;
+  }
+  .service-title {
+    font-size: 0.9rem; font-weight: 500; color: var(--navy);
+    margin-bottom: 10px; letter-spacing: 0.02em;
+  }
+  .service-desc { font-size: 0.82rem; line-height: 1.65; color: var(--text-mid); }
+
+  /* ── WHO WE SERVE ── */
+  .serve { background: var(--navy); color: #fff; }
+  .serve h2 { color: #fff; }
+  .serve .section-eyebrow { color: var(--gold); }
+  .serve-layout { display: flex; gap: 80px; margin-top: 60px; align-items: start; }
+  .serve-list { list-style: none; }
+  .serve-item {
+    display: flex; align-items: center; gap: 20px;
+    padding: 22px 0; border-bottom: 1px solid rgba(255,255,255,0.07);
+    font-size: 1rem; color: rgba(255,255,255,0.75); cursor: default;
+    transition: color 0.2s;
+  }
+  .serve-item:hover { color: #fff; }
+  .serve-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem; color: var(--gold); width: 28px; flex-shrink: 0;
+  }
+  .serve-right { padding-top: 20px; }
+  .serve-callout {
+    border-left: 2px solid var(--gold); padding-left: 28px; margin-bottom: 40px;
+  }
+  .serve-callout p {
+    font-family: 'Cormorant Garamond', serif; font-size: 1.8rem;
+    font-weight: 300; line-height: 1.4; color: rgba(255,255,255,0.85);
+    font-style: italic;
+  }
+  .serve-detail { font-size: 0.9rem; line-height: 1.75; color: rgba(255,255,255,0.5); }
+
+  /* ── PROCESS ── */
+  .process { background: var(--cream); }
+  .process-steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px; margin-top: 60px; }
+  .process-step { position: relative; }
+  .step-connector {
+    position: absolute; top: 20px; left: calc(50% + 24px);
+    right: calc(-50% + 24px); height: 1px;
+    background: linear-gradient(to right, var(--gold), transparent);
+    opacity: 0.3;
+  }
+  .step-icon {
+    width: 48px; height: 48px;
+    border: 1px solid var(--gold); display: flex;
+    align-items: center; justify-content: center; margin-bottom: 20px;
+    color: var(--gold); font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem; font-weight: 300;
+  }
+  .step-title {
+    font-size: 0.95rem; font-weight: 500; color: var(--navy);
+    margin-bottom: 10px;
+  }
+  .step-desc { font-size: 0.85rem; line-height: 1.7; color: var(--text-mid); }
+
+  /* ── INSIGHTS ── */
+  .insights { background: var(--off-white); }
+  .insights-header {
+    display: flex; align-items: flex-end; justify-content: space-between;
+    margin-bottom: 48px;
+  }
+  .insights-grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 24px; }
+  .insight-card {
+    background: #fff; padding: 32px; border-bottom: 2px solid transparent;
+    transition: border-color 0.25s;
+  }
+  .insight-card:hover { border-bottom-color: var(--gold); }
+  .insight-card.featured { background: var(--navy); color: #fff; }
+  .insight-tag {
+    font-size: 0.7rem; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 12px; font-weight: 500;
+  }
+  .insight-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem; font-weight: 400; line-height: 1.3; margin-bottom: 12px;
+    color: var(--navy);
+  }
+  .insight-card.featured .insight-title { color: #fff; }
+  .insight-excerpt { font-size: 0.83rem; line-height: 1.7; color: var(--text-mid); }
+  .insight-card.featured .insight-excerpt { color: rgba(255,255,255,0.55); }
+  .insight-meta {
+    margin-top: 20px; font-size: 0.75rem; color: var(--text-light);
+    letter-spacing: 0.05em;
+  }
+  .insight-card.featured .insight-meta { color: rgba(255,255,255,0.35); }
+
+  /* ── CTA ── */
+  .cta-section {
+    background: var(--navy);
+    display: flex; gap: 0;
+    min-height: 400px;
+  }
+  .cta-left {
+    padding: 80px 60px; display: flex; flex-direction: column; justify-content: center;
+    border-right: 1px solid rgba(201,168,76,0.15);
+  }
+  .cta-left h2 { color: #fff; margin-bottom: 24px; }
+  .cta-left p { color: rgba(255,255,255,0.55); font-size: 1rem; line-height: 1.7; margin-bottom: 36px; max-width: 400px; }
+  .cta-right {
+    padding: 80px 60px; display: flex; flex-direction: column; justify-content: center;
+  }
+  .contact-item { margin-bottom: 28px; }
+  .contact-label {
+    font-size: 0.7rem; letter-spacing: 0.15em; color: var(--gold);
+    text-transform: uppercase; margin-bottom: 6px;
+  }
+  .contact-val {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem; font-weight: 300; color: #fff;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: #07111f;
+    padding: 48px 60px;
+    display: grid; grid-template-columns: 1fr auto;
+    align-items: center; gap: 40px;
+    border-top: 1px solid rgba(201,168,76,0.1);
+  }
+  .footer-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem; font-weight: 300; color: rgba(255,255,255,0.5);
+    letter-spacing: 0.08em; margin-bottom: 12px;
+  }
+  .footer-disc { font-size: 0.72rem; color: rgba(255,255,255,0.25); line-height: 1.6; max-width: 640px; }
+  .footer-links { display: flex; gap: 24px; }
+  .footer-links a { font-size: 0.75rem; color: rgba(255,255,255,0.35); text-decoration: none; letter-spacing: 0.06em; }
+  .footer-links a:hover { color: var(--gold); }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .hero-eyebrow { animation: fadeUp 0.8s ease 0.2s both; }
+  h1 { animation: fadeUp 0.8s ease 0.35s both; }
+  .hero-sub { animation: fadeUp 0.8s ease 0.5s both; }
+  .hero-actions { animation: fadeUp 0.8s ease 0.65s both; }
+
+  /* ── MOBILE ── */
+  @media (max-width: 900px) {
+    nav { padding: 18px 24px; }
+    .nav-links { display: none; }
+    section { padding: 70px 24px; }
+    .hero { grid-template-columns: 1fr; }
+      .hero-left { padding: 130px 24px 70px; }
+    .about { grid-template-columns: 1fr; gap: 40px; }
+    .services-grid { grid-template-columns: 1fr 1fr; }
+    .serve-layout { grid-template-columns: 1fr; gap: 40px; }
+    .process-steps { grid-template-columns: 1fr 1fr; }
+    .insights-grid { grid-template-columns: 1fr; }
+    .cta-section { grid-template-columns: 1fr; }
+    .cta-left { border-right: none; border-bottom: 1px solid rgba(201,168,76,0.15); }
+    footer { grid-template-columns: 1fr; }
+  }
+
+  /* ── LOGO — Tommy Hilfiger inspired ── */
+  .logo {
+    display: flex; align-items: center; gap: 10px;
+    text-decoration: none;
+  }
+  
+  .logo-wordmark {
+    display: flex; flex-direction: column; align-items: center; gap: 1px;
+  }
+  .logo-main {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1.15rem; font-weight: 500;
+    letter-spacing: 0.22em; color: #fff;
+    line-height: 1;
+  }
+  .logo-sub {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.48rem; font-weight: 400;
+    letter-spacing: 0.28em; color: rgba(255,255,255,0.7);
+    line-height: 1; text-transform: uppercase;
+  }
+
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="logo"><span class="logo-wordmark"><span class="logo-main">HERBIG</span><span class="logo-sub">WEALTH MANAGEMENT</span></span></a>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#serve">Who We Serve</a></li>
+    <li><a href="#process">Our Process</a></li>
+    <li><a href="#insights">Insights</a></li>
+  </ul>
+  <a href="contact.html" class="nav-cta">Let's Connect</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero" style="padding:0;">
+  <div class="hero-grid-overlay"></div>
+  <div class="hero-left">
+    <div class="hero-eyebrow">Houston, Texas · Independent RIA</div>
+    <h1>Your Wealth.<br><em>Purposefully</em><br>Managed.</h1>
+    <p class="hero-sub">Herbig Wealth Management delivers institutional-grade financial planning and investment management for individuals, families, businesses, and nonprofits — built around your life, not a model portfolio.</p>
+    <div class="hero-actions">
+      <a href="#contact" class="btn-primary">Schedule a Conversation</a>
+      <a href="#services" class="btn-ghost">
+        Our Services
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+          <path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+        </svg>
+      </a>
+    </div>
+    <div class="hero-scroll">Scroll to explore</div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="about-text">
+    <div class="section-eyebrow">About Tait Herbig</div>
+    <h2>Advice driven by <em>experience</em>, not commission.</h2>
+    <p>After graduating from Texas Tech University with a degree in Finance, Tait built his expertise at Equitable Advisors and Capitalwise before founding Herbig Wealth Management in 2026. His approach is rooted in a simple belief passed down by his family: understand the business, understand the market, and always put the client first.</p>
+    <p>Based in Houston, Tait works with clients across the full spectrum of wealth management — from retirement plan optimization to direct indexing and tax-loss harvesting strategies. He brings the same precision and care to your portfolio that he brings to everything he does.</p>
+  </div>
+  <div class="about-visual">
+    <div class="about-card">
+      <div class="about-name">Tait Herbig</div>
+      <div class="about-title">Founder & Financial Consultant</div>
+      <div class="about-divider"></div>
+      <div class="about-bio">Fredericksburg native. Texas Tech alum. Houston-based advisor dedicated to helping individuals, families, businesses, and nonprofits build lasting financial confidence.</div>
+      <div class="designations">
+        <span class="desig-tag">CFP® (In Progress)</span>
+        <span class="desig-tag">CAP® (In Progress)</span>
+        <span class="desig-tag">CPFA® (In Progress)</span>
+        <span class="desig-tag">Series 65</span>
+        <span class="desig-tag">BBA Finance · Texas Tech</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="services-header">
+    <div class="section-eyebrow">Core Solutions</div>
+    <h2>Every aspect of your financial life, <em>unified</em>.</h2>
+  </div>
+  <div class="services-grid">
+    <div class="service-card">
+      <div class="service-num">01</div>
+      <div class="service-title">Financial Planning</div>
+      <div class="service-desc">Comprehensive plans that align your income, goals, and timeline into a clear, actionable roadmap.</div>
+    </div>
+    <div class="service-card">
+      <div class="service-num">02</div>
+      <div class="service-title">Investment Management</div>
+      <div class="service-desc">Disciplined portfolio construction built on direct indexing, tax efficiency, and long-term performance.</div>
+    </div>
+    <div class="service-card">
+      <div class="service-num">03</div>
+      <div class="service-title">Tax Strategy</div>
+      <div class="service-desc">Proactive tax-loss harvesting, Roth conversion modeling, and year-round optimization strategies.</div>
+    </div>
+    <div class="service-card">
+      <div class="service-num">04</div>
+      <div class="service-title">Retirement Planning</div>
+      <div class="service-desc">401(k) plan analysis, IRA strategy, and income distribution planning for the life you've built.</div>
+    </div>
+    <div class="service-card">
+      <div class="service-num">05</div>
+      <div class="service-title">Benefits & Compensation</div>
+      <div class="service-desc">Employer benefit optimization, equity compensation planning, and deferred compensation strategy.</div>
+    </div>
+    <div class="service-card">
+      <div class="service-num">06</div>
+      <div class="service-title">Insurance & Risk</div>
+      <div class="service-desc">Objective risk analysis and coverage recommendations designed to protect what matters most.</div>
+    </div>
+    <div class="service-card">
+      <div class="service-num">07</div>
+      <div class="service-title">Estate Planning</div>
+      <div class="service-desc">Wealth transfer strategy, trust coordination, and legacy planning in partnership with your legal team.</div>
+    </div>
+    <div class="service-card">
+      <div class="service-num">08</div>
+      <div class="service-title">Business & Nonprofit</div>
+      <div class="service-desc">Retirement plan design, fiduciary oversight, and financial wellness solutions for organizations.</div>
+    </div>
+  </div>
+</section>
+
+<!-- WHO WE SERVE -->
+<section class="serve" id="serve">
+  <div class="section-eyebrow">Who We Serve</div>
+  <h2>Built for people at <em>every stage</em> of wealth.</h2>
+  <div class="serve-layout">
+    <ul class="serve-list">
+      <li class="serve-item"><span class="serve-num">01</span> Corporate Executives & Employees</li>
+      <li class="serve-item"><span class="serve-num">02</span> Business Owners & Entrepreneurs</li>
+      <li class="serve-item"><span class="serve-num">03</span> High-Net-Worth Individuals</li>
+      <li class="serve-item"><span class="serve-num">04</span> Retirees & Affluent Families</li>
+      <li class="serve-item"><span class="serve-num">05</span> Nonprofits & Foundations</li>
+      <li class="serve-item"><span class="serve-num">06</span> Emerging Wealth Professionals</li>
+      <li class="serve-item"><span class="serve-num">07</span> Energy Industry Professionals</li>
+    </ul>
+    <div class="serve-right">
+      <div class="serve-callout">
+        <p>"Good financial advice isn't transactional — it's relational. I want to be the advisor my clients call first."</p>
+      </div>
+      <p class="serve-detail">Herbig Wealth Management takes a genuinely personal approach to every client relationship. Whether you're navigating a liquidity event, optimizing a concentrated equity position, or planning for retirement decades away, you'll work directly with Tait — not a junior associate or call center.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="process" id="process">
+  <div class="section-eyebrow">Our Process</div>
+  <h2>A clear path from <em>where you are</em><br>to where you want to be.</h2>
+  <div class="process-steps">
+    <div class="process-step">
+      <div class="step-connector"></div>
+      <div class="step-icon">01</div>
+      <div class="step-title">Discovery</div>
+      <div class="step-desc">We start with a deep-dive conversation — your goals, concerns, current financial picture, and what success looks like to you.</div>
+    </div>
+    <div class="process-step">
+      <div class="step-connector"></div>
+      <div class="step-icon">02</div>
+      <div class="step-title">Analysis</div>
+      <div class="step-desc">We evaluate your full balance sheet: investments, tax exposure, insurance, benefits, estate documents, and retirement projections.</div>
+    </div>
+    <div class="process-step">
+      <div class="step-connector"></div>
+      <div class="step-icon">03</div>
+      <div class="step-title">Strategy</div>
+      <div class="step-desc">A customized, integrated plan is built — covering every financial dimension with clear priorities, timelines, and tradeoffs.</div>
+    </div>
+    <div class="process-step">
+      <div class="step-icon">04</div>
+      <div class="step-title">Ongoing Partnership</div>
+      <div class="step-desc">We stay actively engaged. Markets shift, life changes — your plan evolves with you through regular check-ins and proactive guidance.</div>
+    </div>
+  </div>
+</section>
+
+<!-- INSIGHTS -->
+<section class="insights" id="insights">
+  <div class="insights-header">
+    <div>
+      <div class="section-eyebrow">Insights</div>
+      <h2>Perspective on <em>markets & money</em>.</h2>
+    </div>
+    <a href="#" class="btn-ghost" style="color: var(--navy);">
+      View All
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+        <path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+      </svg>
+    </a>
+  </div>
+  <div class="insights-grid">
+    <a href="article-market-commentary.html" style="text-decoration:none;display:block;"><div class="insight-card featured">
+      <div class="insight-tag">Market Commentary</div>
+      <div class="insight-title">Staying Disciplined When Headlines Drive Fear</div>
+      <div class="insight-excerpt">Volatility is the price of participation. When geopolitical events and macro uncertainty dominate the news cycle, how you behave as an investor matters far more than what the market does next.</div>
+      <div class="insight-meta">April 2026 · 6 min read</div>
+    </div></a>
+    <a href="article-tax-loss-harvesting.html" style="text-decoration:none;display:block;"><div class="insight-card">
+      <div class="insight-tag">Tax Planning</div>
+      <div class="insight-title">The Real Value of Tax-Loss Harvesting in a Direct Index</div>
+      <div class="insight-excerpt">Direct indexing unlocks harvesting opportunities at the individual security level — and the tax alpha compounds over time in ways a standard ETF can't match.</div>
+      <div class="insight-meta">March 2026 · 5 min read</div>
+    </div></a>
+    <a href="article-roth-vs-pretax.html" style="text-decoration:none;display:block;"><div class="insight-card">
+      <div class="insight-tag">Retirement</div>
+      <div class="insight-title">Roth vs. Pretax: The Decision That Shapes Your Retirement</div>
+      <div class="insight-excerpt">Most people default to pretax contributions. The right answer depends on your current bracket, future income expectations, and the tax environment ahead.</div>
+      <div class="insight-meta">February 2026 · 4 min read</div>
+    </div></a>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section" id="contact" style="padding:0;">
+  <div class="cta-left">
+    <div class="section-eyebrow" style="color:var(--gold);">Ready to Start?</div>
+    <h2>Let's build your financial plan <em>together</em>.</h2>
+    <p>Whether you're just getting started or looking to optimize a complex financial picture, the first step is a straightforward conversation.</p>
+    <a href="mailto:tait.herbig@herbigwealthmanagement.com" class="btn-primary">Schedule a Consultation</a>
+  </div>
+  <div class="cta-right">
+    <div class="contact-item">
+      <div class="contact-label">Advisor</div>
+      <div class="contact-val">Tait Herbig</div>
+    </div>
+    <div class="contact-item">
+      <div class="contact-label">Location</div>
+      <div class="contact-val">Houston, Texas</div>
+    </div>
+    <div class="contact-item">
+      <div class="contact-label">Phone</div>
+      <div class="contact-val" style="font-size:1.1rem;">(830) 992-9418</div>
+    </div>
+    <div class="contact-item">
+      <div class="contact-label">Email</div>
+      <div class="contact-val" style="font-size:1.1rem;">tait.herbig@herbigwealthmanagement.com</div>
+    </div>
+    <div class="contact-item">
+      <div class="contact-label">Firm Type</div>
+      <div class="contact-val" style="font-size:1.1rem;">Independent RIA · Fee-Only</div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    <div class="footer-logo">Herbig Wealth Management</div>
+    <p class="footer-disc">Herbig Wealth Management is an independent registered investment adviser. Registration does not imply a specific level of skill or training. This website is for informational purposes only and does not constitute investment, tax, or legal advice. Investing involves risk, including the possible loss of principal. Past performance is not indicative of future results. Securities held in client accounts through Altruist Financial LLC, member FINRA/SIPC. Altruist Financial LLC and Herbig Wealth Management are separate, unaffiliated entities. Herbig Wealth Management, Houston, TX.</p>
+  </div>
+  <div>
+    <div class="footer-links">
+      <a href="#">Form ADV</a>
+      <a href="#">Disclosures</a>
+      <a href="#">Privacy Policy</a>
+      <a href="#">Client Login</a>
+    </div>
+    <p style="font-size:0.7rem; color:rgba(255,255,255,0.2); margin-top:12px; text-align:right;">© 2026 Herbig Wealth Management. All rights reserved.</p>
+  </div>
+</footer>
+
+<script>
+  // Subtle nav transparency on scroll
+  window.addEventListener('scroll', () => {
+    const nav = document.querySelector('nav');
+    if (window.scrollY > 60) {
+      nav.style.background = 'rgba(13,31,53,0.98)';
+    } else {
+      nav.style.background = 'rgba(13,31,53,0.96)';
+    }
+  });
+
+  // Intersection Observer for scroll reveal
+  const reveals = document.querySelectorAll('.service-card, .process-step, .insight-card, .serve-item');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => {
+          e.target.style.opacity = '1';
+          e.target.style.transform = 'translateY(0)';
+        }, (e.target.dataset.delay || 0));
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  reveals.forEach((el, i) => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(20px)';
+    el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+    el.dataset.delay = (i % 4) * 80;
+    observer.observe(el);
+  });
+</script>
+</body>
+</html>
+    Herbig Wealth Management
+  </a>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#serve">Who We Serve</a></li>
+    <li><a href="#process">Our Process</a></li>
+    <li><a href="#insights">Insights</a></li>
+  </ul>
+  <a href="contact.html" class="nav-cta">Let's Connect</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero" style="padding:0;">
+  <div class="hero-grid-overlay"></div>
+  <div class="hero-left">
+    <div class="hero-eyebrow">Houston, Texas · Independent RIA</div>
+    <h1>Your Wealth.<br><em>Purposefully</em><br>Managed.</h1>
+    <p class="hero-sub">Herbig Wealth Management delivers institutional-grade financial planning and investment management for individuals, families, businesses, and nonprofits — built around your life, not a model portfolio.</p>
+    <div class="hero-actions">
+      <a href="#contact" class="btn-primary">Schedule a Conversation</a>
+      <a href="#services" class="btn-ghost">
+        Our Services
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+          <path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+        </svg>
+      </a>
+    </div>
+    <div class="hero-scroll">Scroll to explore</div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="about-text">
+    <div class="section-eyebrow">About Tait Herbig</div>
+    <h2>Advice driven by <em>experience</em>, not commission.</h2>
+    <p>After graduating from Texas Tech University with a degree in Finance, Tait built his expertise at Equitable Advisors and Capitalwise before founding Herbig Wealth Management in 2026. His approach is rooted in a simple belief passed down by his family: understand the business, understand the market, and always put the client first.</p>
+    <p>Based in Houston, Tait works with clients across the full spectrum of wealth management — from retirement plan optimization to direct indexing and tax-loss harvesting strategies. He brings the same precision and care to your portfolio that he brings to everything he does.</p>
+  </div>
+  <div class="about-visual">
+    <div class="about-card">
+      <div class="about-name">Tait Herbig</div>
+      <div class="about-title">Founder & Financial Consultant</div>
+      <div class="about-divider"></div>
+      <div class="about-bio">Fredericksburg native. Texas Tech alum. Houston-based advisor dedicated to helping individuals, families, businesses, and nonprofits build lasting financial confidence.</div>
+      <div class="designations">
+        <span class="desig-tag">CFP® (In Progress)</span>
+        <span class="desig-tag">CAP® (In Progress)</span>
+        <span class="desig-tag">CPFA® (In Progress)</span>
+        <span class="desig-tag">Series 65</span>
+        <span class="desig-tag">BBA Finance · Texas Tech</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="services-header">
+    <div class="section-eyebrow">Core Solutions</div>
+    <h2>Every aspect of your financial life, <em>unified</em>.</h2>
+  </div>
+  <div class="services-grid">
+    <div class="service-card">
+      <div class="service-num">01</div>
+      <div class="service-title">Financial Planning</div>
+      <div class="service-desc">Comprehensive plans that align your income, goals, and timeline into a clear, actionable roadmap.</div>
+    </div>
+    <div class="service-card">
+      <div class="service-num">02</div>
+      <div class="service-title">Investment Management</div>
+      <div class="service-desc">Disciplined portfolio construction built on direct indexing, tax efficiency, and long-term performance.</div>
+    </div>
+    <div class="service-card">
+      <div class="service-num">03</div>
+      <div class="service-title">Tax Strategy</div>
+      <div class="service-desc">Proactive tax-loss harvesting, Roth conversion modeling, and year-round optimization strategies.</div>
+    </div>
+    <div class="service-card">
+      <div class="service-num">04</div>
+      <div class="service-title">Retirement Planning</div>
+      <div class="service-desc">401(k) plan analysis, IRA strategy, and income distribution planning for the life you've built.</div>
+    </div>
+    <div class="service-card">
+      <div class="service-num">05</div>
+      <div class="service-title">Benefits & Compensation</div>
+      <div class="service-desc">Employer benefit optimization, equity compensation planning, and deferred compensation strategy.</div>
+    </div>
+    <div class="service-card">
+      <div class="service-num">06</div>
+      <div class="service-title">Insurance & Risk</div>
+      <div class="service-desc">Objective risk analysis and coverage recommendations designed to protect what matters most.</div>
+    </div>
+    <div class="service-card">
+      <div class="service-num">07</div>
+      <div class="service-title">Estate Planning</div>
+      <div class="service-desc">Wealth transfer strategy, trust coordination, and legacy planning in partnership with your legal team.</div>
+    </div>
+    <div class="service-card">
+      <div class="service-num">08</div>
+      <div class="service-title">Business & Nonprofit</div>
+      <div class="service-desc">Retirement plan design, fiduciary oversight, and financial wellness solutions for organizations.</div>
+    </div>
+  </div>
+</section>
+
+<!-- WHO WE SERVE -->
+<section class="serve" id="serve">
+  <div class="section-eyebrow">Who We Serve</div>
+  <h2>Built for people at <em>every stage</em> of wealth.</h2>
+  <div class="serve-layout">
+    <ul class="serve-list">
+      <li class="serve-item"><span class="serve-num">01</span> Corporate Executives & Employees</li>
+      <li class="serve-item"><span class="serve-num">02</span> Business Owners & Entrepreneurs</li>
+      <li class="serve-item"><span class="serve-num">03</span> High-Net-Worth Individuals</li>
+      <li class="serve-item"><span class="serve-num">04</span> Retirees & Affluent Families</li>
+      <li class="serve-item"><span class="serve-num">05</span> Nonprofits & Foundations</li>
+      <li class="serve-item"><span class="serve-num">06</span> Emerging Wealth Professionals</li>
+      <li class="serve-item"><span class="serve-num">07</span> Energy Industry Professionals</li>
+    </ul>
+    <div class="serve-right">
+      <div class="serve-callout">
+        <p>"Good financial advice isn't transactional — it's relational. I want to be the advisor my clients call first."</p>
+      </div>
+      <p class="serve-detail">Herbig Wealth Management takes a genuinely personal approach to every client relationship. Whether you're navigating a liquidity event, optimizing a concentrated equity position, or planning for retirement decades away, you'll work directly with Tait — not a junior associate or call center.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="process" id="process">
+  <div class="section-eyebrow">Our Process</div>
+  <h2>A clear path from <em>where you are</em><br>to where you want to be.</h2>
+  <div class="process-steps">
+    <div class="process-step">
+      <div class="step-connector"></div>
+      <div class="step-icon">01</div>
+      <div class="step-title">Discovery</div>
+      <div class="step-desc">We start with a deep-dive conversation — your goals, concerns, current financial picture, and what success looks like to you.</div>
+    </div>
+    <div class="process-step">
+      <div class="step-connector"></div>
+      <div class="step-icon">02</div>
+      <div class="step-title">Analysis</div>
+      <div class="step-desc">We evaluate your full balance sheet: investments, tax exposure, insurance, benefits, estate documents, and retirement projections.</div>
+    </div>
+    <div class="process-step">
+      <div class="step-connector"></div>
+      <div class="step-icon">03</div>
+      <div class="step-title">Strategy</div>
+      <div class="step-desc">A customized, integrated plan is built — covering every financial dimension with clear priorities, timelines, and tradeoffs.</div>
+    </div>
+    <div class="process-step">
+      <div class="step-icon">04</div>
+      <div class="step-title">Ongoing Partnership</div>
+      <div class="step-desc">We stay actively engaged. Markets shift, life changes — your plan evolves with you through regular check-ins and proactive guidance.</div>
+    </div>
+  </div>
+</section>
+
+<!-- INSIGHTS -->
+<section class="insights" id="insights">
+  <div class="insights-header">
+    <div>
+      <div class="section-eyebrow">Insights</div>
+      <h2>Perspective on <em>markets & money</em>.</h2>
+    </div>
+    <a href="#" class="btn-ghost" style="color: var(--navy);">
+      View All
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+        <path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+      </svg>
+    </a>
+  </div>
+  <div class="insights-grid">
+    <a href="article-market-commentary.html" style="text-decoration:none;display:block;"><div class="insight-card featured">
+      <div class="insight-tag">Market Commentary</div>
+      <div class="insight-title">Staying Disciplined When Headlines Drive Fear</div>
+      <div class="insight-excerpt">Volatility is the price of participation. When geopolitical events and macro uncertainty dominate the news cycle, how you behave as an investor matters far more than what the market does next.</div>
+      <div class="insight-meta">April 2026 · 6 min read</div>
+    </div></a>
+    <a href="article-tax-loss-harvesting.html" style="text-decoration:none;display:block;"><div class="insight-card">
+      <div class="insight-tag">Tax Planning</div>
+      <div class="insight-title">The Real Value of Tax-Loss Harvesting in a Direct Index</div>
+      <div class="insight-excerpt">Direct indexing unlocks harvesting opportunities at the individual security level — and the tax alpha compounds over time in ways a standard ETF can't match.</div>
+      <div class="insight-meta">March 2026 · 5 min read</div>
+    </div></a>
+    <a href="article-roth-vs-pretax.html" style="text-decoration:none;display:block;"><div class="insight-card">
+      <div class="insight-tag">Retirement</div>
+      <div class="insight-title">Roth vs. Pretax: The Decision That Shapes Your Retirement</div>
+      <div class="insight-excerpt">Most people default to pretax contributions. The right answer depends on your current bracket, future income expectations, and the tax environment ahead.</div>
+      <div class="insight-meta">February 2026 · 4 min read</div>
+    </div></a>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section" id="contact" style="padding:0;">
+  <div class="cta-left">
+    <div class="section-eyebrow" style="color:var(--gold);">Ready to Start?</div>
+    <h2>Let's build your financial plan <em>together</em>.</h2>
+    <p>Whether you're just getting started or looking to optimize a complex financial picture, the first step is a straightforward conversation.</p>
+    <a href="mailto:tait.herbig@herbigwealthmanagement.com" class="btn-primary">Schedule a Consultation</a>
+  </div>
+  <div class="cta-right">
+    <div class="contact-item">
+      <div class="contact-label">Advisor</div>
+      <div class="contact-val">Tait Herbig</div>
+    </div>
+    <div class="contact-item">
+      <div class="contact-label">Location</div>
+      <div class="contact-val">Houston, Texas</div>
+    </div>
+    <div class="contact-item">
+      <div class="contact-label">Phone</div>
+      <div class="contact-val" style="font-size:1.1rem;">(830) 992-9418</div>
+    </div>
+    <div class="contact-item">
+      <div class="contact-label">Email</div>
+      <div class="contact-val" style="font-size:1.1rem;">tait.herbig@herbigwealthmanagement.com</div>
+    </div>
+    <div class="contact-item">
+      <div class="contact-label">Firm Type</div>
+      <div class="contact-val" style="font-size:1.1rem;">Independent RIA · Fee-Only</div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    <div class="footer-logo">Herbig Wealth Management</div>
+    <p class="footer-disc">Herbig Wealth Management is an independent registered investment adviser. Registration does not imply a specific level of skill or training. This website is for informational purposes only and does not constitute investment, tax, or legal advice. Investing involves risk, including the possible loss of principal. Past performance is not indicative of future results. Securities held in client accounts through Altruist Financial LLC, member FINRA/SIPC. Altruist Financial LLC and Herbig Wealth Management are separate, unaffiliated entities. Herbig Wealth Management, Houston, TX.</p>
+  </div>
+  <div>
+    <div class="footer-links">
+      <a href="#">Form ADV</a>
+      <a href="#">Disclosures</a>
+      <a href="#">Privacy Policy</a>
+      <a href="#">Client Login</a>
+    </div>
+    <p style="font-size:0.7rem; color:rgba(255,255,255,0.2); margin-top:12px; text-align:right;">© 2026 Herbig Wealth Management. All rights reserved.</p>
+  </div>
+</footer>
+
+<script>
+  // Subtle nav transparency on scroll
+  window.addEventListener('scroll', () => {
+    const nav = document.querySelector('nav');
+    if (window.scrollY > 60) {
+      nav.style.background = 'rgba(13,31,53,0.98)';
+    } else {
+      nav.style.background = 'rgba(13,31,53,0.96)';
+    }
+  });
+
+  // Intersection Observer for scroll reveal
+  const reveals = document.querySelectorAll('.service-card, .process-step, .insight-card, .serve-item');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => {
+          e.target.style.opacity = '1';
+          e.target.style.transform = 'translateY(0)';
+        }, (e.target.dataset.delay || 0));
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  reveals.forEach((el, i) => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(20px)';
+    el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+    el.dataset.delay = (i % 4) * 80;
+    observer.observe(el);
+  });
+</script>
+</body>
+</html>

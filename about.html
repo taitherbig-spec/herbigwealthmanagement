@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About | Herbig Wealth Management</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0d1f35;
+    --navy-mid: #172d4a;
+    --gold: #c9a84c;
+    --gold-light: #e8c97a;
+    --cream: #f5f0e8;
+    --off-white: #faf8f4;
+    --text-mid: #4a5568;
+    --text-light: #8a9bb0;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'DM Sans', sans-serif; background: var(--off-white); color: var(--navy); overflow-x: hidden; }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; width: 100%; z-index: 200;
+    height: 72px; padding: 0 60px;
+    display: flex; align-items: center; justify-content: space-between;
+    background: rgba(13,31,53,0.97); backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(201,168,76,0.12);
+  }
+  .nav-links { display: flex; gap: 32px; list-style: none; }
+  .nav-links a { color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.83rem; letter-spacing: 0.05em; transition: color 0.2s; border-bottom: 1px solid transparent; padding-bottom: 2px; }
+  .nav-links a:hover, .nav-links a.active { color: var(--gold-light); border-bottom-color: var(--gold); }
+  .nav-cta { background: transparent; border: 1px solid var(--gold); color: var(--gold); padding: 8px 20px; font-family: 'DM Sans', sans-serif; font-size: 0.8rem; letter-spacing: 0.08em; text-decoration: none; transition: all 0.25s; }
+  .nav-cta:hover { background: var(--gold); color: var(--navy); }
+  .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
+  .hamburger span { display: block; width: 24px; height: 1.5px; background: rgba(255,255,255,0.8); transition: all 0.3s; }
+  .hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+  .hamburger.open span:nth-child(2) { opacity: 0; }
+  .hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+  .mobile-drawer { position: fixed; top: 72px; left: 0; right: 0; bottom: 0; background: var(--navy); z-index: 190; padding: 40px 32px; transform: translateX(100%); transition: transform 0.35s cubic-bezier(0.4,0,0.2,1); display: flex; flex-direction: column; gap: 8px; overflow-y: auto; }
+  .mobile-drawer.open { transform: translateX(0); }
+  .mobile-drawer a { font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; font-weight: 300; color: rgba(255,255,255,0.8); text-decoration: none; padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.07); transition: color 0.2s; }
+  .mobile-drawer a:hover { color: var(--gold-light); }
+  .mobile-drawer .drawer-cta { margin-top: 32px; background: var(--gold); color: var(--navy); padding: 16px 28px; font-family: 'DM Sans', sans-serif; font-size: 0.9rem; font-weight: 500; letter-spacing: 0.08em; text-align: center; }
+
+  /* HERO */
+  .hero {
+    background: var(--navy); min-height: 60vh;
+    display: grid; grid-template-columns: 1fr 1fr;
+    padding-top: 72px; position: relative; overflow: hidden;
+  }
+  .hero-grid { position: absolute; inset: 0; background-image: linear-gradient(rgba(201,168,76,0.035) 1px, transparent 1px), linear-gradient(90deg, rgba(201,168,76,0.035) 1px, transparent 1px); background-size: 80px 80px; pointer-events: none; }
+  .hero-left { padding: 80px 60px; display: flex; flex-direction: column; justify-content: center; position: relative; z-index: 2; }
+  .breadcrumb { font-size: 0.72rem; letter-spacing: 0.15em; color: rgba(255,255,255,0.3); text-transform: uppercase; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
+  .breadcrumb a { color: var(--gold); text-decoration: none; }
+  .breadcrumb span { color: rgba(255,255,255,0.15); }
+  .hero-left h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.8rem, 4.5vw, 4rem); font-weight: 300; color: #fff; line-height: 1.1; margin-bottom: 20px; animation: fadeUp 0.7s ease 0.1s both; }
+  .hero-left h1 em { font-style: italic; color: var(--gold-light); }
+  .hero-sub { font-size: 1rem; color: rgba(255,255,255,0.5); max-width: 480px; line-height: 1.75; font-weight: 300; animation: fadeUp 0.7s ease 0.25s both; }
+  .hero-right { display: flex; align-items: center; justify-content: center; padding: 80px 60px 80px 20px; position: relative; z-index: 2; }
+  .photo-frame {
+    width: 100%; max-width: 340px; aspect-ratio: 3/4;
+    background: var(--navy-mid);
+    border: 1px solid rgba(201,168,76,0.2);
+    position: relative; display: flex; align-items: center; justify-content: center;
+    animation: fadeUp 0.9s ease 0.4s both;
+  }
+  .photo-frame::after { content: ''; position: absolute; bottom: -14px; right: -14px; width: 100%; height: 100%; border: 1px solid rgba(201,168,76,0.15); z-index: -1; }
+  .photo-placeholder { text-align: center; }
+  .photo-placeholder .initials { font-family: 'Cormorant Garamond', serif; font-size: 5rem; font-weight: 300; color: rgba(201,168,76,0.3); line-height: 1; }
+  .photo-placeholder p { font-size: 0.72rem; letter-spacing: 0.12em; color: rgba(255,255,255,0.2); text-transform: uppercase; margin-top: 12px; }
+
+  /* STORY */
+  .story { padding: 100px 60px; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; max-width: 1300px; margin: 0 auto; }
+  .story-timeline { position: relative; padding-left: 28px; }
+  .story-timeline::before { content: ''; position: absolute; left: 0; top: 8px; bottom: 0; width: 1px; background: linear-gradient(to bottom, var(--gold), transparent); }
+  .timeline-item { position: relative; margin-bottom: 48px; }
+  .timeline-item::before { content: ''; position: absolute; left: -32px; top: 8px; width: 8px; height: 8px; border: 1.5px solid var(--gold); background: var(--off-white); border-radius: 50%; }
+  .timeline-year { font-size: 0.7rem; letter-spacing: 0.15em; color: var(--gold); text-transform: uppercase; margin-bottom: 6px; }
+  .timeline-title { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; font-weight: 400; color: var(--navy); margin-bottom: 8px; }
+  .timeline-desc { font-size: 0.88rem; line-height: 1.7; color: var(--text-mid); }
+  .story-text h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(2rem, 3vw, 2.6rem); font-weight: 300; color: var(--navy); line-height: 1.2; margin-bottom: 24px; }
+  .story-text h2 em { font-style: italic; }
+  .story-text p { font-size: 0.97rem; line-height: 1.85; color: var(--text-mid); font-weight: 300; margin-bottom: 18px; }
+
+  /* PHILOSOPHY */
+  .philosophy { background: var(--navy); padding: 90px 60px; }
+  .philosophy-inner { max-width: 1100px; margin: 0 auto; }
+  .philosophy h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(2rem, 3vw, 2.8rem); font-weight: 300; color: #fff; margin-bottom: 60px; }
+  .philosophy h2 em { font-style: italic; color: var(--gold-light); }
+  .pillars { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; }
+  .pillar { border-top: 1px solid rgba(201,168,76,0.25); padding-top: 28px; }
+  .pillar-num { font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; font-weight: 300; color: rgba(201,168,76,0.2); line-height: 1; margin-bottom: 14px; }
+  .pillar h3 { font-size: 0.95rem; font-weight: 500; color: #fff; margin-bottom: 10px; letter-spacing: 0.03em; }
+  .pillar p { font-size: 0.85rem; line-height: 1.75; color: rgba(255,255,255,0.5); }
+
+  /* PERSONAL */
+  .personal { padding: 90px 60px; background: var(--cream); }
+  .personal-inner { max-width: 1100px; margin: 0 auto; }
+  .section-eyebrow { font-size: 0.7rem; letter-spacing: 0.2em; color: var(--gold); text-transform: uppercase; font-weight: 500; margin-bottom: 16px; }
+  .personal h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.8rem, 3vw, 2.6rem); font-weight: 300; color: var(--navy); margin-bottom: 48px; }
+  .personal h2 em { font-style: italic; }
+  .fun-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .fun-card { background: #fff; padding: 28px 24px; border-bottom: 2px solid transparent; transition: border-color 0.25s; }
+  .fun-card:hover { border-bottom-color: var(--gold); }
+  .fun-q { font-size: 0.72rem; letter-spacing: 0.1em; color: var(--gold); text-transform: uppercase; margin-bottom: 10px; }
+  .fun-a { font-family: 'Cormorant Garamond', serif; font-size: 1.15rem; font-weight: 400; color: var(--navy); line-height: 1.5; }
+
+  /* DESIGNATIONS */
+  .designations-section { padding: 80px 60px; max-width: 1100px; margin: 0 auto; }
+  .designations-section h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.8rem, 3vw, 2.4rem); font-weight: 300; color: var(--navy); margin-bottom: 40px; }
+  .desig-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+  .desig-card { display: flex; gap: 20px; align-items: flex-start; padding: 24px; border: 1px solid rgba(13,31,53,0.1); transition: border-color 0.25s; }
+  .desig-card:hover { border-color: var(--gold); }
+  .desig-badge { width: 48px; height: 48px; border: 1.5px solid var(--gold); display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 0.65rem; color: var(--gold); letter-spacing: 0.05em; font-weight: 500; text-align: center; line-height: 1.2; }
+  .desig-info h4 { font-size: 0.9rem; font-weight: 500; color: var(--navy); margin-bottom: 4px; }
+  .desig-info p { font-size: 0.8rem; color: var(--text-mid); line-height: 1.6; }
+  .desig-year { font-size: 0.7rem; letter-spacing: 0.1em; color: var(--gold); margin-top: 4px; }
+
+  /* CTA */
+  .bottom-cta { background: var(--navy); padding: 70px 60px; display: flex; align-items: center; justify-content: space-between; gap: 40px; }
+  .bottom-cta h3 { font-family: 'Cormorant Garamond', serif; font-size: 2rem; font-weight: 300; color: #fff; margin-bottom: 8px; }
+  .bottom-cta p { color: rgba(255,255,255,0.5); font-size: 0.9rem; }
+  .btn-primary { background: var(--gold); color: var(--navy); padding: 14px 32px; font-size: 0.85rem; letter-spacing: 0.08em; font-weight: 500; text-decoration: none; white-space: nowrap; transition: background 0.2s; display: inline-block; }
+  .btn-primary:hover { background: var(--gold-light); }
+
+  /* FOOTER */
+  footer { background: #07111f; padding: 40px 60px; display: flex; align-items: center; justify-content: space-between; border-top: 1px solid rgba(201,168,76,0.1); flex-wrap: wrap; gap: 20px; }
+  .footer-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; color: rgba(255,255,255,0.4); letter-spacing: 0.08em; margin-bottom: 8px; }
+  .footer-disc { font-size: 0.68rem; color: rgba(255,255,255,0.2); max-width: 560px; line-height: 1.6; }
+  .footer-links { display: flex; gap: 20px; }
+  .footer-links a { font-size: 0.72rem; color: rgba(255,255,255,0.3); text-decoration: none; letter-spacing: 0.06em; }
+  .footer-links a:hover { color: var(--gold); }
+
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+
+  @media (max-width: 900px) {
+    nav { padding: 0 24px; }
+    .nav-links, .nav-cta { display: none; }
+    .hamburger { display: flex; }
+    .hero { grid-template-columns: 1fr; }
+    .hero-right { display: none; }
+    .hero-left { padding: 60px 24px 60px; }
+    .story { grid-template-columns: 1fr; gap: 48px; padding: 60px 24px; }
+    .philosophy { padding: 60px 24px; }
+    .pillars { grid-template-columns: 1fr; gap: 28px; }
+    .personal { padding: 60px 24px; }
+    .fun-grid { grid-template-columns: 1fr; }
+    .designations-section { padding: 60px 24px; }
+    .desig-grid { grid-template-columns: 1fr; }
+    .bottom-cta { flex-direction: column; align-items: flex-start; padding: 50px 24px; }
+    footer { flex-direction: column; padding: 32px 24px; }
+  }
+
+  /* ── LOGO — Tommy Hilfiger inspired ── */
+  .logo {
+    display: flex; align-items: center; gap: 10px;
+    text-decoration: none;
+  }
+  
+  .logo-wordmark {
+    display: flex; flex-direction: column; align-items: center; gap: 1px;
+  }
+  .logo-main {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1.15rem; font-weight: 500;
+    letter-spacing: 0.22em; color: #fff;
+    line-height: 1;
+  }
+  .logo-sub {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.48rem; font-weight: 400;
+    letter-spacing: 0.28em; color: rgba(255,255,255,0.7);
+    line-height: 1; text-transform: uppercase;
+  }
+
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="logo"><span class="logo-wordmark"><span class="logo-main">HERBIG</span><span class="logo-sub">WEALTH MANAGEMENT</span></span></a>
+  <ul class="nav-links">
+    <li><a href="services.html">Services</a></li>
+    <li><a href="about.html" class="active">About</a></li>
+    <li><a href="serve.html">Who We Serve</a></li>
+    <li><a href="index.html#process">Process</a></li>
+    <li><a href="index.html#insights">Insights</a></li>
+  </ul>
+  <a href="contact.html" class="nav-cta">Let's Connect</a>
+  <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+</nav>
+
+<div class="mobile-drawer" id="mobile-drawer">
+  <a href="index.html">Home</a>
+  <a href="services.html">Services</a>
+  <a href="about.html">About Tait</a>
+  <a href="serve.html">Who We Serve</a>
+  <a href="contact.html">Contact</a>
+  <a href="contact.html" class="drawer-cta">Let's Connect</a>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-left">
+    <div class="breadcrumb"><a href="index.html">Home</a><span>/</span>About</div>
+    <h1>Meet <em>Tait</em><br>Herbig.</h1>
+    <p class="hero-sub">Founder of Herbig Wealth Management. Financial consultant. Texas Tech alum. Houston-based advisor committed to helping clients build lasting financial confidence.</p>
+  </div>
+  <div class="hero-right">
+    <div class="photo-frame">
+      <div class="photo-placeholder">
+        <div class="initials">TH</div>
+        <p>Photo coming soon</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- STORY -->
+<section class="story">
+  <div class="story-timeline">
+    <div class="timeline-item">
+      <div class="timeline-year">Roots</div>
+      <div class="timeline-title">Fredericksburg, Texas</div>
+      <div class="timeline-desc">Tait grew up in the Texas Hill Country, where his family instilled a love of hard work, community, and the fundamentals of business and investing. His father and grandparents introduced him to the stock market early — a passion that never left.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">2023</div>
+      <div class="timeline-title">Texas Tech University</div>
+      <div class="timeline-desc">Graduated with a Bachelor of Business Administration in Finance from the Rawls College of Business. Built a foundation in financial markets, corporate finance, and investment theory.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">2023–2024</div>
+      <div class="timeline-title">Equitable Advisors</div>
+      <div class="timeline-desc">Gained early experience in client-facing financial advisory, learning the full lifecycle of a client relationship — from discovery through implementation and ongoing service.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">2024–2025</div>
+      <div class="timeline-title">Capitalwise</div>
+      <div class="timeline-desc">Deepened expertise in portfolio management, direct indexing strategies, and retirement plan prospecting at a Houston-based RIA. Developed specialized knowledge in tax-loss harvesting, 401(k) plan analysis, and high-net-worth client service.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">2026</div>
+      <div class="timeline-title">Herbig Wealth Management — Founded</div>
+      <div class="timeline-desc">Founded Herbig Wealth Management to combine institutional-quality investment management with genuinely personal financial planning — serving individuals, families, businesses, and nonprofits across Houston and beyond.</div>
+    </div>
+  </div>
+  <div class="story-text">
+    <div class="section-eyebrow">The Herbig Wealth Management Story</div>
+    <h2>Advice built on <em>relationships</em>, not transactions.</h2>
+    <p>Tait started Herbig Wealth Management with a straightforward premise: most people deserve better financial advice than they're getting. Too often, advisory relationships are product-driven, reactive, and impersonal. Tait set out to build something different.</p>
+    <p>At Herbig Wealth Management, every client works directly with Tait — not a junior associate or a call center. Every plan is built from scratch around your specific situation, goals, and values. And every recommendation is made with your best interest as the only consideration.</p>
+    <p>This approach is made possible by operating as a fee-only, independent registered investment adviser. There are no commissions, no product quotas, and no conflicts of interest. Just clear-eyed, comprehensive advice.</p>
+    <p>Tait's passion for the stock market started around the kitchen table in Fredericksburg. Today, that passion drives a rigorous, research-based investment process — one that has helped clients navigate complex tax situations, concentrated positions, retirement transitions, and major life events.</p>
+  </div>
+</section>
+
+<!-- PHILOSOPHY -->
+<section class="philosophy">
+  <div class="philosophy-inner">
+    <div class="section-eyebrow" style="color:var(--gold);">Our Philosophy</div>
+    <h2>What we believe about <em>great</em> financial advice.</h2>
+    <div class="pillars">
+      <div class="pillar">
+        <div class="pillar-num">01</div>
+        <h3>Relationships First</h3>
+        <p>Financial planning only works when your advisor truly knows you — your goals, your fears, your family, your timeline. We invest in that relationship before anything else.</p>
+      </div>
+      <div class="pillar">
+        <div class="pillar-num">02</div>
+        <h3>Tax Efficiency Is Alpha</h3>
+        <p>After-tax, after-fee returns are what matter. Proactive tax strategy — harvesting, Roth conversions, asset location — compounds quietly and powerfully over time.</p>
+      </div>
+      <div class="pillar">
+        <div class="pillar-num">03</div>
+        <h3>Simplicity Wins</h3>
+        <p>The best financial plan is one you understand and can stick to. We cut complexity where it doesn't add value and explain everything in plain language.</p>
+      </div>
+      <div class="pillar">
+        <div class="pillar-num">04</div>
+        <h3>Discipline Over Prediction</h3>
+        <p>Nobody consistently predicts markets. We build portfolios designed to survive volatility, harvest opportunities within it, and compound reliably over decades.</p>
+      </div>
+      <div class="pillar">
+        <div class="pillar-num">05</div>
+        <h3>Proactive, Not Reactive</h3>
+        <p>We reach out to you when something changes — in your life or in markets. You shouldn't have to call us to find out if something matters for your plan.</p>
+      </div>
+      <div class="pillar">
+        <div class="pillar-num">06</div>
+        <h3>Fee-Only Independence</h3>
+        <p>We earn no commissions. Every recommendation is driven by what's right for you — not by what pays us more. That independence is non-negotiable.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PERSONAL -->
+<section class="personal">
+  <div class="personal-inner">
+    <div class="section-eyebrow">Beyond the Office</div>
+    <h2>The person behind <em>the plan</em>.</h2>
+    <div class="fun-grid">
+      <div class="fun-card">
+        <div class="fun-q">What's in your gift box?</div>
+        <div class="fun-a">"A picture of the family, Astros or Texas Tech tickets, a cast iron skillet, and steaks."</div>
+      </div>
+      <div class="fun-card">
+        <div class="fun-q">Who's most impacted your life?</div>
+        <div class="fun-a">"My family. From my mom instilling helping others, to my dad and grandparents teaching me about business and the stock market."</div>
+      </div>
+      <div class="fun-card">
+        <div class="fun-q">Favorite tradition?</div>
+        <div class="fun-a">"Cooking a good meal and trying out new mixed drinks with family and friends."</div>
+      </div>
+      <div class="fun-card">
+        <div class="fun-q">One item you can't live without?</div>
+        <div class="fun-a">"My cast iron skillet — or if any size, my grill. I love to cook for people. It's the way I show love."</div>
+      </div>
+      <div class="fun-card">
+        <div class="fun-q">One thing everyone should add to their routine?</div>
+        <div class="fun-a">"A 30–45 minute walk or run. It's the best self-care anyone can do."</div>
+      </div>
+      <div class="fun-card">
+        <div class="fun-q">Fictional character for a day?</div>
+        <div class="fun-a">"Jason Bourne in Europe. Even though it would be scary — it would be exciting."</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DESIGNATIONS -->
+<section class="designations-section">
+  <div class="section-eyebrow">Credentials</div>
+  <h2>Licenses & Designations</h2>
+  <div class="desig-grid">
+    <div class="desig-card">
+      <div class="desig-badge">CFP®</div>
+      <div class="desig-info">
+        <h4>Certified Financial Planner</h4>
+        <p>The gold standard in financial planning. Covers investment management, tax planning, retirement, estate planning, and insurance.</p>
+        <div class="desig-year">2026 · In Progress</div>
+      </div>
+    </div>
+    <div class="desig-card">
+      <div class="desig-badge">CAP®</div>
+      <div class="desig-info">
+        <h4>Chartered Advisor in Philanthropy</h4>
+        <p>Specialized expertise in charitable giving strategies, donor-advised funds, and philanthropic planning for individuals and nonprofits.</p>
+        <div class="desig-year">2026 · In Progress</div>
+      </div>
+    </div>
+    <div class="desig-card">
+      <div class="desig-badge">CPFA®</div>
+      <div class="desig-info">
+        <h4>Chartered Plan Fiduciary Advisor</h4>
+        <p>Demonstrates expertise in retirement plan fiduciary responsibilities, plan design, and investment option selection for employer-sponsored plans.</p>
+        <div class="desig-year">2026 · In Progress</div>
+      </div>
+    </div>
+    <div class="desig-card">
+      <div class="desig-badge">S65</div>
+      <div class="desig-info">
+        <h4>Series 65 — Investment Adviser</h4>
+        <p>FINRA-administered examination qualifying Tait as a registered investment adviser representative and fiduciary.</p>
+        <div class="desig-year">2024</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<div class="bottom-cta">
+  <div>
+    <h3>Ready to work together?</h3>
+    <p>Schedule a no-pressure introductory conversation with Tait.</p>
+  </div>
+  <a href="contact.html" class="btn-primary">Schedule a Consultation →</a>
+</div>
+
+<footer>
+  <div>
+    <div class="footer-logo">Herbig Wealth Management · Houston, TX</div>
+    <p class="footer-disc">Herbig Wealth Management is an independent registered investment adviser. This website is for informational purposes only and does not constitute investment, tax, or legal advice. Investing involves risk. Past performance is not indicative of future results. Securities held in client accounts through Altruist Financial LLC, member FINRA/SIPC. Altruist Financial LLC and Herbig Wealth Management are separate, unaffiliated entities.</p>
+  </div>
+  <div class="footer-links">
+    <a href="#">Form ADV</a><a href="#">Disclosures</a><a href="#">Privacy</a><a href="index.html">Home</a>
+  </div>
+</footer>
+
+<script>
+  const ham = document.getElementById('hamburger');
+  const drawer = document.getElementById('mobile-drawer');
+  ham.addEventListener('click', () => { ham.classList.toggle('open'); drawer.classList.toggle('open'); document.body.style.overflow = drawer.classList.contains('open') ? 'hidden' : ''; });
+  drawer.querySelectorAll('a').forEach(a => a.addEventListener('click', () => { ham.classList.remove('open'); drawer.classList.remove('open'); document.body.style.overflow = ''; }));
+
+  const obs = new IntersectionObserver(entries => entries.forEach(e => { if (e.isIntersecting) { e.target.style.opacity='1'; e.target.style.transform='translateY(0)'; obs.unobserve(e.target); } }), { threshold: 0.08 });
+  document.querySelectorAll('.timeline-item, .pillar, .fun-card, .desig-card').forEach((el, i) => { el.style.opacity='0'; el.style.transform='translateY(18px)'; el.style.transition=`opacity 0.45s ease ${(i%4)*70}ms, transform 0.45s ease ${(i%4)*70}ms`; obs.observe(el); });
+</script>
+</body>
+</html>
